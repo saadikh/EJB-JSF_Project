@@ -36,7 +36,9 @@ public class GestionnaireCompteBancaire {
         return em.merge(compteBancaire);  
     }  
   
-    public CompteBancaire getCompte(int idCompteBancaire) {  
+    public CompteBancaire getCompteBancaire(int idCompteBancaire) {  
         return em.find(CompteBancaire.class, idCompteBancaire);  
     }
+    
+ 
 }

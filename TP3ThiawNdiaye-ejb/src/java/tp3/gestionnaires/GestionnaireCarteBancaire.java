@@ -5,14 +5,8 @@
  */
 package tp3.gestionnaires;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import tp3.modeles.CarteBancaire;
-import tp3.modeles.CompteBancaire;
 
 /**
  *
@@ -22,25 +16,6 @@ import tp3.modeles.CompteBancaire;
 @LocalBean
 public class GestionnaireCarteBancaire {
 
-    @PersistenceContext(unitName = "TP3ThiawNdiaye-ejbPU")
-    private EntityManager em;
-
-    public void persist(Object object) {
-        em.persist(object);
-    }
-  
-      public List<CompteBancaire> getAllCartesBancaires() {  
-        Query query = em.createNamedQuery("CarteBancaire.findAll");  
-        return query.getResultList();
-    }  
-      
-        public CarteBancaire update(CarteBancaire carteBancaire) {  
-        return em.merge(carteBancaire);  
-    }  
-  
-    public CarteBancaire getCarte(int idCarteBancaire) {  
-        return em.find(CarteBancaire.class, idCarteBancaire);  
-    }
-  
-
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
 }

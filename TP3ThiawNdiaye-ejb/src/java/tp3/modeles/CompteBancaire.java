@@ -11,8 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
 
 
 @Entity
@@ -20,8 +22,8 @@ import javax.persistence.NamedQuery;
     @NamedQuery(name = "CompteBancaire.findAll", query = "SELECT c FROM CompteBancaire c")
     , @NamedQuery(name = "CompteBancaire.findByNumeroCompte", query = "SELECT c FROM CompteBancaire c WHERE c.numeroCompte = :numeroCompte")
     , @NamedQuery(name = "CompteBancaire.findBySoldeCompte", query = "SELECT c FROM CompteBancaire c WHERE c.soldeCompte = :soldeCompte")
-    , @NamedQuery(name = "CompteBancaire.findByProprietaire", query = "SELECT c FROM CompteBancaire c WHERE c.proprietaire = :proprietaire")
-    , @NamedQuery(name = "CompteBancaire.findByBanque", query = "SELECT c FROM CompteBancaire c WHERE c.banque = :banque")
+    , @NamedQuery(name = "CompteBancaire.findByProprietaire", query = "SELECT c FROM CompteBancaire c WHERE c.proprietaire.id = :proprietaire.id")
+    , @NamedQuery(name = "CompteBancaire.findByBanque", query = "SELECT c FROM CompteBancaire c WHERE c.banque.id = :banque.id")
     , @NamedQuery(name = "CompteBancaire.findByDateOuverture", query = "SELECT c FROM CompteBancaire c WHERE c.dateOuverture = :dateOuverture")})
 public class CompteBancaire implements Serializable {
 
@@ -30,45 +32,52 @@ public class CompteBancaire implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    
-    private Personne banque;
-    private Adresse adresseBanque;
     private int numeroCompte;
+    @ManyToOne
+    private Banque banque;
+
+    public int getNumeroCompte() {
+        return numeroCompte;
+    }
+
+    public void setNumeroCompte(int numeroCompte) {
+        this.numeroCompte = numeroCompte;
+    }
+
+    public Banque getBanque() {
+        return banque;
+    }
+
+    public void setBanque(Banque banque) {
+        this.banque = banque;
+    }
+
+    public Date getDateOuverture() {
+        return dateOuverture;
+    }
+
+    public void setDateOuverture(Date dateOuverture) {
+        this.dateOuverture = dateOuverture;
+    }
+    @ManyToOne
     private Personne proprietaire;
-    private Adresse adresseProprietaire;
     private int soldeCompte;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOuverture;
     
     public CompteBancaire(){
         
     }
 
-    public CompteBancaire(Long id, Personne banque, Adresse adresseBanque, int numeroCompte, Personne proprietaire, Adresse adresseProprietaire, int soldeCompte, Date dateOuverture) {
+    public CompteBancaire(Long id, int numeroCompte, Personne proprietaire, int soldeCompte, Date dateOuverture) {
         this.id = id;
-        this.banque = banque;
-        this.adresseBanque = adresseBanque;
         this.numeroCompte = numeroCompte;
         this.proprietaire = proprietaire;
-        this.adresseProprietaire = adresseProprietaire;
         this.soldeCompte = soldeCompte;
         this.dateOuverture = dateOuverture;
     }
 
-    public Personne getBanque() {
-        return banque;
-    }
 
-    public void setBanque(Personne banque) {
-        this.banque = banque;
-    }
-
-    public Adresse getAdresseBanque() {
-        return adresseBanque;
-    }
-
-    public void setAdresseBanque(Adresse adresseBanque) {
-        this.adresseBanque = adresseBanque;
-    }
 
     public int getNumCompte() {
         return numeroCompte;
@@ -86,13 +95,6 @@ public class CompteBancaire implements Serializable {
         this.proprietaire = proprietaire;
     }
 
-    public Adresse getAdresseProprietaire() {
-        return adresseProprietaire;
-    }
-
-    public void setAdresseProprietaire(Adresse adresseProprietaire) {
-        this.adresseProprietaire = adresseProprietaire;
-    }
 
     public int getSoldeCompte() {
         return soldeCompte;

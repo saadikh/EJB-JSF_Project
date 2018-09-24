@@ -11,21 +11,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
+
 @Entity
-@NamedQueries({
-    @NamedQuery(name = "CarteBancaire.findAll", query = "SELECT c FROM CarteBancaire c")
-    , @NamedQuery(name = "CarteBancaire.findByNumeroCarte", query = "SELECT c FROM CarteBancaire c WHERE c.numeroCarte = :numeroCarte")
-    , @NamedQuery(name = "CarteBancaire.findByNomBanque", query = "SELECT c FROM CarteBancaire c WHERE c.nomBanque = :nomBanque")
-    , @NamedQuery(name = "CarteBancaire.findByNomProprietaire", query = "SELECT c FROM CarteBancaire c WHERE c.nomProprietaire = :nomProprietaire")
-    , @NamedQuery(name = "CarteBancaire.findByPrenomProprietaire", query = "SELECT c FROM CarteBancaire c WHERE c.prenomProprietaire = :prenomProprietaire")
-    , @NamedQuery(name = "CarteBancaire.findBydateExpiration", query = "SELECT c FROM CarteBancaire c WHERE c.dateExpiration = :dateExpiration")})
-
-
-
 public class CarteBancaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,11 +24,39 @@ public class CarteBancaire implements Serializable {
     private Long id;
     
     private int numeroCarte;
-    private String nomBanque;
-    private String nomProprietaire;
-    private String prenomProprietaire;
+    @OneToOne
+    private Banque banque;
+    @OneToOne
+    private Personne proprietaire;
+
+    public Banque getBanque() {
+        return banque;
+    }
+
+    public void setBanque(Banque banque) {
+        this.banque = banque;
+    }
+
+    public Personne getProprietaire() {
+        return proprietaire;
+    }
+
+    public void setProprietaire(Personne proprietaire) {
+        this.proprietaire = proprietaire;
+    }
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateExpiration;
+
+    public CarteBancaire() {
+    }
+
+    public CarteBancaire(Long id, int numeroCarte, Banque banque, Personne proprietaire, Date dateExpiration) {
+        this.id = id;
+        this.numeroCarte = numeroCarte;
+        this.dateExpiration = dateExpiration;
+    }
+    
+    
 
     public int getNumeroCarte() {
         return numeroCarte;
@@ -46,22 +64,6 @@ public class CarteBancaire implements Serializable {
 
     public void setNumeroCarte(int numeroCarte) {
         this.numeroCarte = numeroCarte;
-    }
-
-    public String getNomProprietaire() {
-        return nomProprietaire;
-    }
-
-    public void setNomProprietaire(String nomProprietaire) {
-        this.nomProprietaire = nomProprietaire;
-    }
-
-    public String getPrenomProprietaire() {
-        return prenomProprietaire;
-    }
-
-    public void setPrenomProprietaire(String prenomProprietaire) {
-        this.prenomProprietaire = prenomProprietaire;
     }
 
     public Date getDateExpiration() {
