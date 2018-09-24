@@ -20,6 +20,62 @@ public class CompteBancaire implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    
+    private Personne banque;
+    private Adresse adresseBanque;
+    private int numCompte;
+    private Personne proprietaire;
+    private Adresse adresseProprietaire;
+    private int soldeCompte;
+
+    public Personne getBanque() {
+        return banque;
+    }
+
+    public void setBanque(Personne banque) {
+        this.banque = banque;
+    }
+
+    public Adresse getAdresseBanque() {
+        return adresseBanque;
+    }
+
+    public void setAdresseBanque(Adresse adresseBanque) {
+        this.adresseBanque = adresseBanque;
+    }
+
+    public int getNumCompte() {
+        return numCompte;
+    }
+
+    public void setNumCompte(int numCompte) {
+        this.numCompte = numCompte;
+    }
+
+    public Personne getProprietaire() {
+        return proprietaire;
+    }
+
+    public void setProprietaire(Personne proprietaire) {
+        this.proprietaire = proprietaire;
+    }
+
+    public Adresse getAdresseProprietaire() {
+        return adresseProprietaire;
+    }
+
+    public void setAdresseProprietaire(Adresse adresseProprietaire) {
+        this.adresseProprietaire = adresseProprietaire;
+    }
+
+    public int getSoldeCompte() {
+        return soldeCompte;
+    }
+
+    public void setSoldeCompte(int soldeCompte) {
+        this.soldeCompte = soldeCompte;
+    }
+
 
     public Long getId() {
         return id;

@@ -6,29 +6,23 @@
 package tp3.modeles;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
+/**
+ *
+ * @author thiaw
+ */
 @Entity
-public class Personne implements Serializable {
+public class Adresse implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private String nom;
-    private String prenom;
-    private Date dateNaissance;
-    private String login;
-    private String motDePasse;
-    private String typePersonne;
-    private String profession;
-    private Adresse adresse;
 
     public Long getId() {
         return id;
@@ -48,10 +42,10 @@ public class Personne implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Personne)) {
+        if (!(object instanceof Adresse)) {
             return false;
         }
-        Personne other = (Personne) object;
+        Adresse other = (Adresse) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -60,7 +54,7 @@ public class Personne implements Serializable {
 
     @Override
     public String toString() {
-        return "tp3.modeles.Personne[ id=" + id + " ]";
+        return "tp3.modeles.Adresse[ id=" + id + " ]";
     }
     
 }
