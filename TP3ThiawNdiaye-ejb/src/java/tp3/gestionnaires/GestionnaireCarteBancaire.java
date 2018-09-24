@@ -12,12 +12,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import tp3.modeles.CarteBancaire;
-import tp3.modeles.CompteBancaire;
 
-/**
- *
- * @author thiaw
- */
+
 @Stateless
 @LocalBean
 public class GestionnaireCarteBancaire {
@@ -39,7 +35,5 @@ public class GestionnaireCarteBancaire {
    
     public CarteBancaire getCarte(int idCarteBancaire) {   
         return em.find(CarteBancaire.class, idCarteBancaire);   
-    } 
-     
-  
+} 
 }

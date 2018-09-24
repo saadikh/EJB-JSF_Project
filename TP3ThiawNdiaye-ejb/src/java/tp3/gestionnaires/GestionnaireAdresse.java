@@ -12,16 +12,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import tp3.modeles.Adresse;
-import tp3.modeles.CompteBancaire;
 
-/**
- *
- * @author thiaw
- */
+
 @Stateless
 @LocalBean
 public class GestionnaireAdresse {
 
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
+    
     @PersistenceContext(unitName = "TP3ThiawNdiaye-ejbPU") 
     private EntityManager em; 
      
@@ -41,5 +40,5 @@ public class GestionnaireAdresse {
  
     public void persist(Object object) { 
         em.persist(object); 
-    } 
+} 
 }

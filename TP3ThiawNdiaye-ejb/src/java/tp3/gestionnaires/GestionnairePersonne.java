@@ -13,15 +13,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import tp3.modeles.Personne;
 
-/**
- *
- * @author thiaw
- */
+
 @Stateless
 @LocalBean
 public class GestionnairePersonne {
 
-  @PersistenceContext(unitName = "TP3ThiawNdiaye-ejbPU")
+    @PersistenceContext(unitName = "TP3ThiawNdiaye-ejbPU")
     private EntityManager em;
      public void persist(Object object) {
         em.persist(object);
@@ -38,6 +35,5 @@ public class GestionnairePersonne {
   
     public Personne getCarte(int id) {  
         return em.find(Personne.class, id);  
-    }
- }
-
+}
+}

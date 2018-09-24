@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>  
+        <f:viewParam name="idCustomer" value="#{customerDetailsMBean.idCustomer}"  
+                     required="true"/>  
+        <f:viewAction action="#{gestionnaireCompteBancaireMBean.creerComptesTest()}"/>  
+    </f:metadata> 
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="List"/></h1>
+                <h:dataTable value="#{gestionnaireCompteBancaireMBean.comptesBancaires}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="NumeroCompte"/>
+                        </f:facet>
+                        <h:outputText value="#{item.numeroCompte}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Banque"/>
+                        </f:facet>
+                        <h:outputText value="#{item.banque.nom}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="DateOuverture"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dateOuverture}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="NumCompte"/>
+                        </f:facet>
+                        <h:outputText value="#{item.numCompte}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Proprietaire"/>
+                        </f:facet>
+                        <h:outputText value="#{item.proprietaire.nom}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="SoldeCompte"/>
+                        </f:facet>
+                        <h:outputText value="#{item.soldeCompte}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

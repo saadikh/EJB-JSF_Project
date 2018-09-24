@@ -22,8 +22,8 @@ import javax.persistence.Temporal;
     @NamedQuery(name = "CompteBancaire.findAll", query = "SELECT c FROM CompteBancaire c")
     , @NamedQuery(name = "CompteBancaire.findByNumeroCompte", query = "SELECT c FROM CompteBancaire c WHERE c.numeroCompte = :numeroCompte")
     , @NamedQuery(name = "CompteBancaire.findBySoldeCompte", query = "SELECT c FROM CompteBancaire c WHERE c.soldeCompte = :soldeCompte")
-    , @NamedQuery(name = "CompteBancaire.findByProprietaire", query = "SELECT c FROM CompteBancaire c WHERE c.proprietaire.id = :proprietaire.id")
-    , @NamedQuery(name = "CompteBancaire.findByBanque", query = "SELECT c FROM CompteBancaire c WHERE c.banque.id = :banque.id")
+    , @NamedQuery(name = "CompteBancaire.findByProprietaire", query = "SELECT c FROM CompteBancaire c WHERE c.proprietaire = :proprietaire")
+    , @NamedQuery(name = "CompteBancaire.findByBanque", query = "SELECT c FROM CompteBancaire c WHERE c.banque = :banque")
     , @NamedQuery(name = "CompteBancaire.findByDateOuverture", query = "SELECT c FROM CompteBancaire c WHERE c.dateOuverture = :dateOuverture")})
 public class CompteBancaire implements Serializable {
 
@@ -36,6 +36,12 @@ public class CompteBancaire implements Serializable {
     @ManyToOne
     private Banque banque;
 
+    @ManyToOne
+    private Personne proprietaire;
+    private int soldeCompte;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateOuverture;
+    
     public int getNumeroCompte() {
         return numeroCompte;
     }
@@ -59,18 +65,13 @@ public class CompteBancaire implements Serializable {
     public void setDateOuverture(Date dateOuverture) {
         this.dateOuverture = dateOuverture;
     }
-    @ManyToOne
-    private Personne proprietaire;
-    private int soldeCompte;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateOuverture;
+
     
     public CompteBancaire(){
         
     }
 
-    public CompteBancaire(Long id, int numeroCompte, Personne proprietaire, int soldeCompte, Date dateOuverture) {
-        this.id = id;
+    public CompteBancaire(int numeroCompte, Personne proprietaire, int soldeCompte, Date dateOuverture) {
         this.numeroCompte = numeroCompte;
         this.proprietaire = proprietaire;
         this.soldeCompte = soldeCompte;

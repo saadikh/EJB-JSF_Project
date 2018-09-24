@@ -12,44 +12,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 
 @Entity
-@NamedQueries({
-    @NamedQuery(name = "Personne.findAll", query = "SELECT p FROM Personne p")
-    , @NamedQuery(name = "Personne.findByNom", query = "SELECT p FROM Personne p WHERE p.nom = :nom")
-    , @NamedQuery(name = "Personne.findByPrenom", query = "SELECT p FROM Personne p WHERE p.prenom = :prenom")
-    , @NamedQuery(name = "Personne.findByDateNaissance", query = "SELECT p FROM Personne p WHERE p.dateNaissance = :dateNaissance")
-    , @NamedQuery(name = "Personne.findByLogin", query = "SELECT p FROM Personne p WHERE p.login = :login")
-    , @NamedQuery(name = "Personne.findByMotDePasse", query = "SELECT p FROM Personne p WHERE p.motDePasse = :motDePasse")
-    , @NamedQuery(name = "Personne.findByProfession", query = "SELECT p FROM Personne p WHERE p.profession = :profession")
-    , @NamedQuery(name = "Personne.findByAdresse", query = "SELECT p FROM Personne p WHERE p.adresse = :adresse")})
-
 public class Personne implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @OneToMany(mappedBy = "proprietaire")
-    private List<CompteBancaire> compteBancaires;
-
-    public Personne() {
-    }
-
-    public Personne(Long id, String nom, String prenom, Date dateNaissance, String login, String motDePasse, String profession, Adresse adresse) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateNaissance = dateNaissance;
-        this.login = login;
-        this.motDePasse = motDePasse;
-        this.profession = profession;
-        this.adresse = adresse;
-    }
-    @Id
+    
+       @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
@@ -62,6 +33,32 @@ public class Personne implements Serializable {
     private String profession;
     @OneToOne
     private Adresse adresse;
+
+    private static final long serialVersionUID = 1L;
+    @OneToMany(mappedBy = "proprietaire")
+    private List<CompteBancaire> compteBancaires;
+
+    public Personne() {
+    }
+
+    public Personne(String nom, String prenom, Date dateNaissance, String login, String motDePasse, String profession, Adresse adresse) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.login = login;
+        this.motDePasse = motDePasse;
+        this.profession = profession;
+        this.adresse = adresse;
+    }
+
+
+    public Personne(String nom, Date dateNaissance, Adresse adresse) {
+        this.nom = nom;
+        this.dateNaissance = dateNaissance;
+        this.adresse = adresse;
+    }
+    
+    
 
     public String getNom() {
         return nom;
