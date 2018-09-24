@@ -6,13 +6,23 @@
 package tp3.modeles;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "CompteBancaire.findAll", query = "SELECT c FROM CompteBancaire c")
+    , @NamedQuery(name = "CompteBancaire.findByNumeroCompte", query = "SELECT c FROM CompteBancaire c WHERE c.numeroCompte = :numeroCompte")
+    , @NamedQuery(name = "CompteBancaire.findBySoldeCompte", query = "SELECT c FROM CompteBancaire c WHERE c.soldeCompte = :soldeCompte")
+    , @NamedQuery(name = "CompteBancaire.findByProprietaire", query = "SELECT c FROM CompteBancaire c WHERE c.proprietaire = :proprietaire")
+    , @NamedQuery(name = "CompteBancaire.findByBanque", query = "SELECT c FROM CompteBancaire c WHERE c.banque = :banque")
+    , @NamedQuery(name = "CompteBancaire.findByDateOuverture", query = "SELECT c FROM CompteBancaire c WHERE c.dateOuverture = :dateOuverture")})
 public class CompteBancaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,10 +33,26 @@ public class CompteBancaire implements Serializable {
     
     private Personne banque;
     private Adresse adresseBanque;
-    private int numCompte;
+    private int numeroCompte;
     private Personne proprietaire;
     private Adresse adresseProprietaire;
     private int soldeCompte;
+    private Date dateOuverture;
+    
+    public CompteBancaire(){
+        
+    }
+
+    public CompteBancaire(Long id, Personne banque, Adresse adresseBanque, int numeroCompte, Personne proprietaire, Adresse adresseProprietaire, int soldeCompte, Date dateOuverture) {
+        this.id = id;
+        this.banque = banque;
+        this.adresseBanque = adresseBanque;
+        this.numeroCompte = numeroCompte;
+        this.proprietaire = proprietaire;
+        this.adresseProprietaire = adresseProprietaire;
+        this.soldeCompte = soldeCompte;
+        this.dateOuverture = dateOuverture;
+    }
 
     public Personne getBanque() {
         return banque;
@@ -45,11 +71,11 @@ public class CompteBancaire implements Serializable {
     }
 
     public int getNumCompte() {
-        return numCompte;
+        return numeroCompte;
     }
 
     public void setNumCompte(int numCompte) {
-        this.numCompte = numCompte;
+        this.numeroCompte = numCompte;
     }
 
     public Personne getProprietaire() {

@@ -23,7 +23,53 @@ public class Adresse implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    private String voie;
+    private int numeroVoie;
+    private int codePostal;
+    private String ville;
+    private String pays;
 
+    public String getVoie() {
+        return voie;
+    }
+
+    public void setVoie(String voie) {
+        this.voie = voie;
+    }
+
+    public int getNumeroVoie() {
+        return numeroVoie;
+    }
+
+    public void setNumeroVoie(int numeroVoie) {
+        this.numeroVoie = numeroVoie;
+    }
+
+    public int getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(int codePostal) {
+        this.codePostal = codePostal;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    public String getPays() {
+        return pays;
+    }
+
+    public void setPays(String pays) {
+        this.pays = pays;
+    }
+    
+    
     public Long getId() {
         return id;
     }

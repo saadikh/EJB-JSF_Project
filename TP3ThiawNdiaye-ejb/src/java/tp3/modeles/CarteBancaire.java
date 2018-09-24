@@ -6,6 +6,7 @@
 package tp3.modeles;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,44 @@ public class CarteBancaire implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private int numeroCarte;
+    private String nomBanque;
+    private String nomProprietaire;
+    private String prenomProprietaire;
+    private Date dateExpiration;
+
+    public int getNumeroCarte() {
+        return numeroCarte;
+    }
+
+    public void setNumeroCarte(int numeroCarte) {
+        this.numeroCarte = numeroCarte;
+    }
+
+    public String getNomProprietaire() {
+        return nomProprietaire;
+    }
+
+    public void setNomProprietaire(String nomProprietaire) {
+        this.nomProprietaire = nomProprietaire;
+    }
+
+    public String getPrenomProprietaire() {
+        return prenomProprietaire;
+    }
+
+    public void setPrenomProprietaire(String prenomProprietaire) {
+        this.prenomProprietaire = prenomProprietaire;
+    }
+
+    public Date getDateExpiration() {
+        return dateExpiration;
+    }
+
+    public void setDateExpiration(Date dateExpiration) {
+        this.dateExpiration = dateExpiration;
+    }
 
     public Long getId() {
         return id;
