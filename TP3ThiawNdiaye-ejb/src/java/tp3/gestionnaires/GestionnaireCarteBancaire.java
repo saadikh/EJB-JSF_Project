@@ -7,6 +7,8 @@ package tp3.gestionnaires;
 
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -16,6 +18,13 @@ import javax.ejb.LocalBean;
 @LocalBean
 public class GestionnaireCarteBancaire {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @PersistenceContext(unitName = "TP3ThiawNdiaye-ejbPU")
+    private EntityManager em;
+
+    public void persist(Object object) {
+        em.persist(object);
+    }
+  
+  
+
 }
