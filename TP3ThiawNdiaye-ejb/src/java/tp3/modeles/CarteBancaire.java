@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
 
 @Entity
 @NamedQueries({
@@ -36,6 +37,7 @@ public class CarteBancaire implements Serializable {
     private String nomBanque;
     private String nomProprietaire;
     private String prenomProprietaire;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateExpiration;
 
     public int getNumeroCarte() {
