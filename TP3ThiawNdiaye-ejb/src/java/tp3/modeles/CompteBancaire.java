@@ -78,16 +78,6 @@ public class CompteBancaire implements Serializable {
         this.dateOuverture = dateOuverture;
     }
 
-
-
-    public int getNumCompte() {
-        return numeroCompte;
-    }
-
-    public void setNumCompte(int numCompte) {
-        this.numeroCompte = numCompte;
-    }
-
     public Personne getProprietaire() {
         return proprietaire;
     }

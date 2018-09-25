@@ -16,6 +16,13 @@ import tp3.modeles.CompteBancaire;
 @Stateless
 @LocalBean
 public class GestionnaireCompteBancaire {
+    /*
+        creation compte test
+        deposer argent
+        retirer argent
+        transferer argent
+    
+    */
 
     @PersistenceContext(unitName = "TP3ThiawNdiaye-ejbPU")
     private EntityManager em;
@@ -26,6 +33,14 @@ public class GestionnaireCompteBancaire {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    
+    public void creerCompte(CompteBancaire compteBancaire){
+        em.persist(compteBancaire);
+    }
+    
+     public void deleteCompte(CompteBancaire c) {
+        em.remove(em.merge(c));
+    }
     
      public List<CompteBancaire> getAllComptesBancaires() {  
         Query query = em.createNamedQuery("CompteBancaire.findAll");  
@@ -40,5 +55,5 @@ public class GestionnaireCompteBancaire {
         return em.find(CompteBancaire.class, idCompteBancaire);  
     }
     
- 
+    
 }

@@ -4,61 +4,54 @@
       xmlns:p="http://primefaces.org/ui"  
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>  
+        <f:viewParam name="" value="#{gestionnaireCompteBancaireMBean.idCompteBancaire}"  
+                     required="true"/>  
+        <f:viewAction action="#{gestionnaireCompteBancaireMBean.comptesBancaires}"/>  
+    </f:metadata> 
     <h:head>
-        <title>Facelet Title</title>
+        <title>Gestionnaire compte </title>
     </h:head>
     <h:body>
         <f:view>
 
 
             <h:form>
-                <h1><h:outputText value="List"/></h1>
-                <h:dataTable value="#{gestionnaireCompteBancaireMBean.comptesBancaires}" var="item">
-                    <h:column>
+                <h1><h:outputText value="Liste des comptes"/></h1>
+                <p:dataTable value="#{gestionnaireCompteBancaireMBean.details}" var="item">
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="NumeroCompte"/>
                         </f:facet>
-                        <h:outputText value="#{item.numeroCompte}"/>
-                    </h:column>
-                    <h:column>
+                        <h:outputText value="#{gestionnaireCompteBancaireMBean.details.numeroCompte}"/>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="Banque"/>
                         </f:facet>
-                        <h:outputText value="#{item.banque}"/>
-                    </h:column>
-                    <h:column>
+                        <h:outputText value="#{gestionnaireCompteBancaireMBean.details.banque.nom}"/>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="DateOuverture"/>
                         </f:facet>
-                        <h:outputText value="#{item.dateOuverture}">
+                        <h:outputText value="#{estionnaireCompteBancaireMBean.details.dateOuverture}">
                             <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="NumCompte"/>
-                        </f:facet>
-                        <h:outputText value="#{item.numCompte}"/>
-                    </h:column>
-                    <h:column>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="Proprietaire"/>
                         </f:facet>
-                        <h:outputText value="#{item.proprietaire}"/>
-                    </h:column>
-                    <h:column>
+                        <h:outputText value="#{estionnaireCompteBancaireMBean.details.proprietaire.nom}"/>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             <h:outputText value="SoldeCompte"/>
                         </f:facet>
-                        <h:outputText value="#{item.soldeCompte}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Id"/>
-                        </f:facet>
-                        <h:outputText value="#{item.id}"/>
-                    </h:column>
-                </h:dataTable>
+                        <h:outputText value="#{gestionnaireCompteBancaireMBean.details.soldeCompte}"/>
+                    </p:column>
+                </p:dataTable>
             </h:form>
         </f:view>
 
