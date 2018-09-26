@@ -25,15 +25,15 @@ public class CarteBancaire implements Serializable {
     
     private int numeroCarte;
     @OneToOne
-    private Banque banque;
+    private Agence banque;
     @OneToOne
     private Personne proprietaire;
 
-    public Banque getBanque() {
+    public Agence getBanque() {
         return banque;
     }
 
-    public void setBanque(Banque banque) {
+    public void setBanque(Agence banque) {
         this.banque = banque;
     }
 
@@ -50,7 +50,7 @@ public class CarteBancaire implements Serializable {
     public CarteBancaire() {
     }
 
-    public CarteBancaire(Long id, int numeroCarte, Banque banque, Personne proprietaire, Date dateExpiration) {
+    public CarteBancaire(Long id, int numeroCarte, Agence banque, Personne proprietaire, Date dateExpiration) {
         this.id = id;
         this.numeroCarte = numeroCarte;
         this.dateExpiration = dateExpiration;

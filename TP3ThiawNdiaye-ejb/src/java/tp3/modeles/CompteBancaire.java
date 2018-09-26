@@ -23,7 +23,7 @@ import javax.persistence.Temporal;
     , @NamedQuery(name = "CompteBancaire.findByNumeroCompte", query = "SELECT c FROM CompteBancaire c WHERE c.numeroCompte = :numeroCompte")
     , @NamedQuery(name = "CompteBancaire.findBySoldeCompte", query = "SELECT c FROM CompteBancaire c WHERE c.soldeCompte = :soldeCompte")
     , @NamedQuery(name = "CompteBancaire.findByProprietaire", query = "SELECT c FROM CompteBancaire c WHERE c.proprietaire = :proprietaire")
-    , @NamedQuery(name = "CompteBancaire.findByBanque", query = "SELECT c FROM CompteBancaire c WHERE c.banque = :banque")
+    , @NamedQuery(name = "CompteBancaire.findByAgence", query = "SELECT c FROM CompteBancaire c WHERE c.agence = :agence")
     , @NamedQuery(name = "CompteBancaire.findByDateOuverture", query = "SELECT c FROM CompteBancaire c WHERE c.dateOuverture = :dateOuverture")})
 public class CompteBancaire implements Serializable {
 
@@ -34,7 +34,7 @@ public class CompteBancaire implements Serializable {
     
     private int numeroCompte;
     @ManyToOne
-    private Banque banque;
+    private Agence agence;
 
     @ManyToOne
     private Personne proprietaire;
@@ -50,12 +50,12 @@ public class CompteBancaire implements Serializable {
         this.numeroCompte = numeroCompte;
     }
 
-    public Banque getBanque() {
-        return banque;
+    public Agence getAgence() {
+        return agence;
     }
 
-    public void setBanque(Banque banque) {
-        this.banque = banque;
+    public void setAgence(Agence agence) {
+        this.agence = agence;
     }
 
     public Date getDateOuverture() {

@@ -12,7 +12,7 @@ import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import tp3.gestionnaires.GestionnaireCompteBancaire;
 import tp3.modeles.Adresse;
-import tp3.modeles.Banque;
+import tp3.modeles.Agence;
 import tp3.modeles.CompteBancaire;
 import tp3.modeles.Personne;
 
@@ -74,7 +74,7 @@ public class GestionnaireCompteBancaireMBean implements Serializable{
     Adresse ad2 = new Adresse(Long.MIN_VALUE, "r. gary", 35, 06300, "Nice", "France");
   
     Personne client = new Personne("thiaw", "mamadou", new java.util.Date(), "saadikh", "root", "etudiant", ad1);
-    Banque banque = new Banque("BNP", ad2, new java.util.Date());
+    Agence banque = new Agence("BNP", ad2, new java.util.Date());
     
     CompteBancaire cpt = new CompteBancaire(2, client, 1000, new java.util.Date());
     gestionnaireCompteBancaire.creerCompte(cpt);
