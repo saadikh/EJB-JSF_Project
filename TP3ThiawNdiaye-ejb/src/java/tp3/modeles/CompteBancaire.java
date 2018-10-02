@@ -22,8 +22,13 @@ import javax.persistence.Temporal;
     @NamedQuery(name = "CompteBancaire.findAll", query = "SELECT c FROM CompteBancaire c")
     , @NamedQuery(name = "CompteBancaire.findByNumeroCompte", query = "SELECT c FROM CompteBancaire c WHERE c.numeroCompte = :numeroCompte")
     , @NamedQuery(name = "CompteBancaire.findBySoldeCompte", query = "SELECT c FROM CompteBancaire c WHERE c.soldeCompte = :soldeCompte")
-    , @NamedQuery(name = "CompteBancaire.findByProprietaire", query = "SELECT c FROM CompteBancaire c WHERE c.proprietaire = :proprietaire")
-    , @NamedQuery(name = "CompteBancaire.findByAgence", query = "SELECT c FROM CompteBancaire c WHERE c.agence = :agence")
+    , @NamedQuery(name = "CompteBancaire.findByNomProprietaire", query = "SELECT c.proprietaire.nom FROM CompteBancaire c ")
+    , @NamedQuery(name = "CompteBancaire.findByPrenomProprietaire", query = "SELECT c.proprietaire.prenom FROM CompteBancaire c ") 
+    , @NamedQuery(name = "CompteBancaire.findByCodeAgence", query = "SELECT c.agence.codeAgence FROM CompteBancaire c ") 
+    , @NamedQuery(name = "CompteBancaire.findByVoieAgence", query = "SELECT c.agence.adresse.voie FROM CompteBancaire c ") 
+    , @NamedQuery(name = "CompteBancaire.findByVilleAgence", query = "SELECT c.agence.adresse.ville FROM CompteBancaire c ") 
+    , @NamedQuery(name = "CompteBancaire.findByNumeroVoieAgence", query = "SELECT c.agence.adresse.numeroVoie FROM CompteBancaire c ") 
+    , @NamedQuery(name = "CompteBancaire.findByNomAgence", query = "SELECT c.agence.nomAgence FROM CarteBancaire c ") 
     , @NamedQuery(name = "CompteBancaire.findByDateOuverture", query = "SELECT c FROM CompteBancaire c WHERE c.dateOuverture = :dateOuverture")})
 public class CompteBancaire implements Serializable {
 
@@ -35,7 +40,6 @@ public class CompteBancaire implements Serializable {
     private int numeroCompte;
     @ManyToOne
     private Agence agence;
-
     @ManyToOne
     private Personne proprietaire;
     private int soldeCompte;

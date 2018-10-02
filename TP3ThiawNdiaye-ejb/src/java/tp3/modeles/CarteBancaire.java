@@ -11,11 +11,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 
 @Entity
+@NamedQueries({ 
+    @NamedQuery(name = "CarteBancaire.findAll", query = "SELECT c FROM CarteBancaire c") 
+    , @NamedQuery(name = "CarteBancaire.findByNumeroCarte", query = "SELECT c FROM CarteBancaire c WHERE c.numeroCarte = :numeroCarte") 
+    , @NamedQuery(name = "CarteBancaire.findByCodeAgence", query = "SELECT c.agence.codeAgence FROM CarteBancaire c ") 
+    , @NamedQuery(name = "CarteBancaire.findByVoieAgence", query = "SELECT c.agence.adresse.voie FROM CarteBancaire c ") 
+    , @NamedQuery(name = "CarteBancaire.findByVilleAgence", query = "SELECT c.agence.adresse.ville FROM CarteBancaire c ") 
+    , @NamedQuery(name = "CarteBancaire.findByNumeroVoieAgence", query = "SELECT c.agence.adresse.numeroVoie FROM CarteBancaire c ") 
+    , @NamedQuery(name = "CarteBancaire.findByNomAgence", query = "SELECT c.agence.nomAgence FROM CarteBancaire c ") 
+    , @NamedQuery(name = "CarteBancaire.findByNomProprietaire", query = "SELECT c.proprietaire.nom FROM CarteBancaire c ")
+    , @NamedQuery(name = "CarteBancaire.findByPrenomProprietaire", query = "SELECT c.proprietaire.prenom FROM CarteBancaire c e") 
+    , @NamedQuery(name = "CarteBancaire.findByDateCreation", query = "SELECT c FROM CarteBancaire c WHERE c.dateCreation = :dateCreation")
+    , @NamedQuery(name = "CarteBancaire.findByDateExpiration", query = "SELECT c FROM CarteBancaire c WHERE c.dateExpiration = :dateExpiration")}) 
+
 public class CarteBancaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,17 +39,29 @@ public class CarteBancaire implements Serializable {
     private Long id;
     
     private int numeroCarte;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateCreation;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateExpiration;
     @OneToOne
-    private Agence banque;
+    private Agence agence;
     @OneToOne
     private Personne proprietaire;
 
-    public Agence getBanque() {
-        return banque;
+    public Agence getAgence() {
+        return agence;
+    }
+    
+      public Date getDateCreation() {
+        return dateCreation;
     }
 
-    public void setBanque(Agence banque) {
-        this.banque = banque;
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public void setAgence(Agence agence) {
+        this.agence = agence;
     }
 
     public Personne getProprietaire() {
@@ -44,16 +71,15 @@ public class CarteBancaire implements Serializable {
     public void setProprietaire(Personne proprietaire) {
         this.proprietaire = proprietaire;
     }
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateExpiration;
 
     public CarteBancaire() {
     }
 
-    public CarteBancaire(Long id, int numeroCarte, Agence banque, Personne proprietaire, Date dateExpiration) {
-        this.id = id;
+    public CarteBancaire(int numeroCarte, Date dateCreation, Date dateExpiration, Agence agence, Personne proprietaire) {
         this.numeroCarte = numeroCarte;
+        this.dateCreation = dateCreation;
         this.dateExpiration = dateExpiration;
+        this.proprietaire = proprietaire;
     }
     
     

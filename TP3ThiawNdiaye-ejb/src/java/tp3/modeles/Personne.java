@@ -12,18 +12,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
-
 @Entity
+@NamedQueries({ 
+    @NamedQuery(name = "Personne.findAll", query = "SELECT p FROM Personne p") 
+    , @NamedQuery(name = "Personne.findByNom", query = "SELECT p FROM Personne p WHERE p.nom = :nom") 
+    , @NamedQuery(name = "Personne.findByPrenom", query = "SELECT p FROM Personne p WHERE p.prenom = :prenom") 
+    , @NamedQuery(name = "Personne.findByDateNaissance", query = "SELECT p FROM Personne p WHERE p.dateNaissance = :dateNaissance") 
+    , @NamedQuery(name = "Personne.findByLogin", query = "SELECT p FROM Personne p WHERE p.login = :login") 
+    , @NamedQuery(name = "Personne.findByMotDePasse", query = "SELECT p FROM Personne p WHERE p.motDePasse = :motDePasse") 
+    , @NamedQuery(name = "Personne.findByProfession", query = "SELECT p FROM Personne p WHERE p.profession = :profession") 
+     , @NamedQuery(name = "Personne.findByVoie", query = "SELECT p.adresse.voie FROM Personne p ") 
+    , @NamedQuery(name = "Personne.findByVille", query = "SELECT p.adresse.ville FROM Personne p") 
+    , @NamedQuery(name = "Personne.findByNumeroVoie", query = "SELECT p.adresse.numeroVoie FROM Personne p")}) 
 public class Personne implements Serializable {
-    
-       @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
+    private static final long serialVersionUID = 1L;
+
     private String nom;
     private String prenom;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -34,7 +48,6 @@ public class Personne implements Serializable {
     @OneToOne
     private Adresse adresse;
 
-    private static final long serialVersionUID = 1L;
     @OneToMany(mappedBy = "proprietaire")
     private List<CompteBancaire> compteBancaires;
 
@@ -51,14 +64,11 @@ public class Personne implements Serializable {
         this.adresse = adresse;
     }
 
-
     public Personne(String nom, Date dateNaissance, Adresse adresse) {
         this.nom = nom;
         this.dateNaissance = dateNaissance;
         this.adresse = adresse;
     }
-    
-    
 
     public String getNom() {
         return nom;
@@ -148,5 +158,5 @@ public class Personne implements Serializable {
     public String toString() {
         return "tp3.modeles.Personne[ id=" + id + " ]";
     }
-    
+
 }

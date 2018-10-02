@@ -10,12 +10,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
-/**
- *
- * @author thiaw
- */
+
 @Entity
+@NamedQueries({ 
+    @NamedQuery(name = "Adresse.findAll", query = "SELECT a FROM Adresse a") 
+    , @NamedQuery(name = "Adresse.findByNumeroVoie", query = "SELECT a FROM Adresse a WHERE a.numeroVoie = :numeroVoie") 
+    , @NamedQuery(name = "Adresse.findByVoie", query = "SELECT a FROM Adresse a WHERE a.voie = :voie") 
+    , @NamedQuery(name = "Adresse.findByVille", query = "SELECT a FROM Adresse a WHERE a.ville = :ville")}) 
 public class Adresse implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,23 +29,16 @@ public class Adresse implements Serializable {
     
     private String voie;
     private int numeroVoie;
-    private int codePostal;
     private String ville;
-    private String pays;
 
     public Adresse() {
     }
 
-    public Adresse(Long id, String voie, int numeroVoie, int codePostal, String ville, String pays) {
-        this.id = id;
+    public Adresse(String voie, int numeroVoie, String ville) {
         this.voie = voie;
         this.numeroVoie = numeroVoie;
-        this.codePostal = codePostal;
         this.ville = ville;
-        this.pays = pays;
     }
-    
-    
     
 
     public String getVoie() {
@@ -60,13 +57,6 @@ public class Adresse implements Serializable {
         this.numeroVoie = numeroVoie;
     }
 
-    public int getCodePostal() {
-        return codePostal;
-    }
-
-    public void setCodePostal(int codePostal) {
-        this.codePostal = codePostal;
-    }
 
     public String getVille() {
         return ville;
@@ -76,13 +66,6 @@ public class Adresse implements Serializable {
         this.ville = ville;
     }
 
-    public String getPays() {
-        return pays;
-    }
-
-    public void setPays(String pays) {
-        this.pays = pays;
-    }
     
     
     public Long getId() {

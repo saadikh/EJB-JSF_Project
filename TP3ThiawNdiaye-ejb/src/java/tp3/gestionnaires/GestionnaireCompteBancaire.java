@@ -30,9 +30,6 @@ public class GestionnaireCompteBancaire {
     public void persist(Object object) {
         em.persist(object);
     }
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
     
     public void creerCompte(CompteBancaire compteBancaire){
         em.persist(compteBancaire);
@@ -55,5 +52,15 @@ public class GestionnaireCompteBancaire {
         return em.find(CompteBancaire.class, idCompteBancaire);  
     }
     
+    public void retirerArgent(CompteBancaire compteBancaire, int montantDebite){
+        // todo
+    }
     
+     public void deposerArgent(CompteBancaire compteBancaire, int montantCredite){
+        // todo
+    }
+     
+       public void transfererArgent(CompteBancaire compteDebite, CompteBancaire compteCredite, int montantTransfert){
+        // todo
+    }
 }
