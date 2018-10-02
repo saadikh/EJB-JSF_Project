@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 @NamedQueries({
     @NamedQuery(name = "Agence.findAll", query = "SELECT a FROM Agence a")
     , @NamedQuery(name = "Agence.findByNomAgence", query = "SELECT a FROM Agence a WHERE a.nomAgence = :nomAgence")
-    , @NamedQuery(name = "Agence.findByCodeAgence", query = "SELECT a FROM Agence a WHERE a.codeAgence :codeAgence")
+    , @NamedQuery(name = "Agence.findByCodeAgence", query = "SELECT a FROM Agence a WHERE a.codeAgence = :codeAgence")
     , @NamedQuery(name = "Agence.findByNomVoie", query = "SELECT a.adresse.voie FROM Agence a")
     , @NamedQuery(name = "Agence.findByNumeroVoie", query = "SELECT a.adresse.numeroVoie FROM Agence a")
     , @NamedQuery(name = "Agence.findByVille", query = "SELECT a.adresse.ville FROM Agence a ")})

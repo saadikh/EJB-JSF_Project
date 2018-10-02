@@ -13,32 +13,38 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import tp3.modeles.Adresse;
 
-
 @Stateless
 @LocalBean
 public class GestionnaireAdresse {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
-    @PersistenceContext(unitName = "TP3ThiawNdiaye-ejbPU") 
-    private EntityManager em; 
-     
- 
-        public List<CompteBancaire> getAllAdresses() {   
-        Query query = em.createNamedQuery("Adresse.findAll");   
-        return query.getResultList(); 
-    }   
-       
-        public Adresse update(Adresse adresse) {   
-        return em.merge(adresse);   
-    }   
-   
-    public Adresse getAdresse(int id) {   
-        return em.find(Adresse.class, id);   
-    } 
- 
-    public void persist(Object object) { 
-        em.persist(object); 
-} 
+    @PersistenceContext(unitName = "TP3ThiawNdiaye-ejbPU")
+    private EntityManager em;
+
+    public void persist(Object object) {
+        em.persist(object);
+    }
+
+    public void creerAdresse(Adresse adr) {
+        em.persist(adr);
+    }
+
+    public List<Adresse> getAllAdresses() {
+        Query query = em.createNamedQuery("Adresse.findAll");
+        return query.getResultList();
+    }
+
+    public Adresse update(Adresse adresse) {
+        return em.merge(adresse);
+    }
+
+    public void deleteAdresse(Adresse adr) {
+        em.remove(em.merge(adr));
+    }
+
+    public Adresse getAdresse(int id) {
+        return em.find(Adresse.class, id);
+    }
+
 }

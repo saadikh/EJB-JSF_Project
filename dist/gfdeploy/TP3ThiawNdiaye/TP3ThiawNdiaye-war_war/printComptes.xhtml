@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>  
+        <f:viewAction action="#{indexMBean.creerComptesTests()}"/>  
+    </f:metadata>
+    <h:head>
+        <title>Gestion des comptes</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Gestion des comptes"/></h1>
+                <p:dataTable value="#{indexMBean.comptes}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="NumeroCompte"/>
+                        </f:facet>
+                        <h:outputText value="#{item.numeroCompte}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Proprietaire"/>
+                        </f:facet>
+                        <h:outputText value="#{item.proprietaire.prenom}"/>
+                        <h:outputText value="#{item.proprietaire.nom}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="SoldeCompte"/>
+                        </f:facet>
+                        <h:outputText value="#{item.soldeCompte}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Agence associé"/>
+                        </f:facet>
+                        <h:outputText value="#{item.agence.nomAgence}"/>
+                        <h:outputText value="#{item.agence.adresse.ville}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="DateOuverture"/>
+                        </f:facet>
+                        <h:outputText value="#{item.dateOuverture}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

@@ -51,6 +51,16 @@ public class Personne implements Serializable {
     @OneToMany(mappedBy = "proprietaire")
     private List<CompteBancaire> compteBancaires;
 
+    public List<CompteBancaire> getCompteBancaires() {
+        return compteBancaires;
+    }
+
+    public void setCompteBancaires(List<CompteBancaire> compteBancaires) {
+        this.compteBancaires = compteBancaires;
+    }
+    
+    
+
     public Personne() {
     }
 
@@ -148,10 +158,7 @@ public class Personne implements Serializable {
             return false;
         }
         Personne other = (Personne) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override

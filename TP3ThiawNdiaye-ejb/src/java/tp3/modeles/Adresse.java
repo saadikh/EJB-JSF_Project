@@ -34,7 +34,7 @@ public class Adresse implements Serializable {
     public Adresse() {
     }
 
-    public Adresse(String voie, int numeroVoie, String ville) {
+    public Adresse(int numeroVoie, String voie, String ville) {
         this.voie = voie;
         this.numeroVoie = numeroVoie;
         this.ville = ville;
@@ -90,10 +90,7 @@ public class Adresse implements Serializable {
             return false;
         }
         Adresse other = (Adresse) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override

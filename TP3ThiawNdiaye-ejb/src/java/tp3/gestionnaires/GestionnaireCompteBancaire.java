@@ -16,13 +16,7 @@ import tp3.modeles.CompteBancaire;
 @Stateless
 @LocalBean
 public class GestionnaireCompteBancaire {
-    /*
-        creation compte test
-        deposer argent
-        retirer argent
-        transferer argent
-    
-    */
+   
 
     @PersistenceContext(unitName = "TP3ThiawNdiaye-ejbPU")
     private EntityManager em;

@@ -21,13 +21,13 @@ import javax.persistence.Temporal;
 @NamedQueries({ 
     @NamedQuery(name = "CarteBancaire.findAll", query = "SELECT c FROM CarteBancaire c") 
     , @NamedQuery(name = "CarteBancaire.findByNumeroCarte", query = "SELECT c FROM CarteBancaire c WHERE c.numeroCarte = :numeroCarte") 
-    , @NamedQuery(name = "CarteBancaire.findByCodeAgence", query = "SELECT c.agence.codeAgence FROM CarteBancaire c ") 
-    , @NamedQuery(name = "CarteBancaire.findByVoieAgence", query = "SELECT c.agence.adresse.voie FROM CarteBancaire c ") 
-    , @NamedQuery(name = "CarteBancaire.findByVilleAgence", query = "SELECT c.agence.adresse.ville FROM CarteBancaire c ") 
-    , @NamedQuery(name = "CarteBancaire.findByNumeroVoieAgence", query = "SELECT c.agence.adresse.numeroVoie FROM CarteBancaire c ") 
-    , @NamedQuery(name = "CarteBancaire.findByNomAgence", query = "SELECT c.agence.nomAgence FROM CarteBancaire c ") 
-    , @NamedQuery(name = "CarteBancaire.findByNomProprietaire", query = "SELECT c.proprietaire.nom FROM CarteBancaire c ")
-    , @NamedQuery(name = "CarteBancaire.findByPrenomProprietaire", query = "SELECT c.proprietaire.prenom FROM CarteBancaire c e") 
+    , @NamedQuery(name = "CarteBancaire.findByCodeAgence", query = "SELECT c.agence.codeAgence FROM CarteBancaire c") 
+    , @NamedQuery(name = "CarteBancaire.findByVoieAgence", query = "SELECT c.agence.adresse.voie FROM CarteBancaire c") 
+    , @NamedQuery(name = "CarteBancaire.findByVilleAgence", query = "SELECT c.agence.adresse.ville FROM CarteBancaire c") 
+    , @NamedQuery(name = "CarteBancaire.findByNumeroVoieAgence", query = "SELECT c.agence.adresse.numeroVoie FROM CarteBancaire c") 
+    , @NamedQuery(name = "CarteBancaire.findByNomAgence", query = "SELECT c.agence.nomAgence FROM CarteBancaire c") 
+    , @NamedQuery(name = "CarteBancaire.findByNomProprietaire", query = "SELECT c.proprietaire.nom FROM CarteBancaire c")
+    , @NamedQuery(name = "CarteBancaire.findByPrenomProprietaire", query = "SELECT c.proprietaire.prenom FROM CarteBancaire c") 
     , @NamedQuery(name = "CarteBancaire.findByDateCreation", query = "SELECT c FROM CarteBancaire c WHERE c.dateCreation = :dateCreation")
     , @NamedQuery(name = "CarteBancaire.findByDateExpiration", query = "SELECT c FROM CarteBancaire c WHERE c.dateExpiration = :dateExpiration")}) 
 
@@ -122,10 +122,7 @@ public class CarteBancaire implements Serializable {
             return false;
         }
         CarteBancaire other = (CarteBancaire) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override

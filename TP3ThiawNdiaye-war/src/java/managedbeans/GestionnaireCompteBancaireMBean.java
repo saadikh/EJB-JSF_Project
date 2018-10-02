@@ -11,10 +11,7 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import tp3.gestionnaires.GestionnaireCompteBancaire;
-import tp3.modeles.Adresse;
-import tp3.modeles.Agence;
 import tp3.modeles.CompteBancaire;
-import tp3.modeles.Personne;
 
 
 @Named(value = "gestionnaireCompteBancaireMBean")
@@ -23,6 +20,7 @@ public class GestionnaireCompteBancaireMBean implements Serializable{
 
     @EJB
     private GestionnaireCompteBancaire gestionnaireCompteBancaire;
+    
     
     //private List<CompteBancaire> listComptes;
  
@@ -65,11 +63,12 @@ public class GestionnaireCompteBancaireMBean implements Serializable{
     public GestionnaireCompteBancaireMBean() {
     }
     
-    public List<CompteBancaire>getComptesBancaires() {  
+    //(**)
+    public List<CompteBancaire> getComptesBancaires() {  
         return gestionnaireCompteBancaire.getAllComptesBancaires();  
     } 
     
-     public void creerComptesTest(){
+     /*public void creerComptesTest(){
     Adresse ad1 = new Adresse(Long.MIN_VALUE, "bd wilson", 61, 06600, "Antibes", "France");
     Adresse ad2 = new Adresse(Long.MIN_VALUE, "r. gary", 35, 06300, "Nice", "France");
   
@@ -80,7 +79,7 @@ public class GestionnaireCompteBancaireMBean implements Serializable{
     gestionnaireCompteBancaire.creerCompte(cpt);
     
      }
-     
+     */
  
     
 }

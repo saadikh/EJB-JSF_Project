@@ -24,7 +24,7 @@ public class GestionnairePersonne {
         em.persist(object);
     }
 
-    public void creerCompte(Personne personne) {
+    public void creerPersonne(Personne personne) {
         em.persist(personne);
     }
 
