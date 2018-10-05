@@ -64,7 +64,7 @@ public class IndexMBean {
         DateFormat dfm = new SimpleDateFormat("yyyy-MM-dd");
         Date date = dfm.parse("2018-10-02");
         
-        Personne p = new Personne("thiaw", date, adr);
+        Personne p = new Personne("thiaw", "mamadou", date, adr);
         gestionnairePersonne.creerPersonne(p);
                 
         CompteBancaire cptb = new CompteBancaire(12233, ag, p, 0, date);

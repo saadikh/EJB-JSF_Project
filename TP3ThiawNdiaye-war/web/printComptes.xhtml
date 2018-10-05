@@ -16,10 +16,14 @@
 
             <h:form>
                 <h1><h:outputText value="Gestion des comptes"/></h1>
-                <p:dataTable value="#{indexMBean.comptes}" var="item">
+                <p:dataTable value="#{indexMBean.comptes}" var="item"
+                             emptyMessage="No customer found with given criteria"   
+                            widgetVar="customerTable"
+                             paginator="true" 
+                             rows="10">
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="NumeroCompte"/>
+                            <h:outputText value="N°Compte"/>
                         </f:facet>
                         <h:outputText value="#{item.numeroCompte}"/>
                     </p:column>
@@ -27,8 +31,9 @@
                         <f:facet name="header">
                             <h:outputText value="Proprietaire"/>
                         </f:facet>
-                        <h:outputText value="#{item.proprietaire.prenom}"/>
-                        <h:outputText value="#{item.proprietaire.nom}"/>
+                        <h:outputText value="#{item.proprietaire.nom} "/>
+                        <h:outputText value=" #{item.proprietaire.prenom}"/>
+
                     </p:column>
                     <p:column>
                         <f:facet name="header">
@@ -38,23 +43,9 @@
                     </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Agence"/>
+                            <h:outputText value="Gestion du compte"/>
                         </f:facet>
-                        <h:outputText value="#{item.agence.nomAgence}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="DateOuverture"/>
-                        </f:facet>
-                        <h:outputText value="#{item.dateOuverture}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Id"/>
-                        </f:facet>
-                        <h:outputText value="#{item.id}"/>
+                        <h:link>Details / Ajout / Retrait </h:link> 
                     </p:column>
                 </p:dataTable>
             </h:form>

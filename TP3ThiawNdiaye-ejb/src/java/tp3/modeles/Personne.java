@@ -74,8 +74,9 @@ public class Personne implements Serializable {
         this.adresse = adresse;
     }
 
-    public Personne(String nom, Date dateNaissance, Adresse adresse) {
+    public Personne(String nom, String prenom, Date dateNaissance, Adresse adresse) {
         this.nom = nom;
+        this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.adresse = adresse;
     }
