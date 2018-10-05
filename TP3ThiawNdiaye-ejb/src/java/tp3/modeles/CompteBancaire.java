@@ -75,11 +75,12 @@ public class CompteBancaire implements Serializable {
         
     }
 
-    public CompteBancaire(int numeroCompte, Personne proprietaire, int soldeCompte, Date dateOuverture) {
+    public CompteBancaire(int numeroCompte, Agence agence, Personne proprietaire, int soldeCompte, Date dateOuverture) {
         this.numeroCompte = numeroCompte;
         this.proprietaire = proprietaire;
         this.soldeCompte = soldeCompte;
         this.dateOuverture = dateOuverture;
+        this.agence = agence;
     }
 
     public Personne getProprietaire() {

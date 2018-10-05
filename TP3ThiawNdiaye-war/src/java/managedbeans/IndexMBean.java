@@ -5,6 +5,10 @@
  */
 package managedbeans;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -47,7 +51,9 @@ public class IndexMBean {
     public IndexMBean() {
     }
     
-    public void creerComptesTests(){
+    /* id, num et solde*/
+    
+    public void creerComptesTests() throws ParseException{
     
         Adresse adr = new Adresse(61, "bd wilson", "Antibes");
         gestionnaireAdresse.creerAdresse(adr);
@@ -55,10 +61,13 @@ public class IndexMBean {
         Agence ag = new Agence(2827, "borriglionne", adr);
         gestionnaireAgence.creerAgence(ag);
         
-        Personne p = new Personne("thiaw", null, adr);
+        DateFormat dfm = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = dfm.parse("2018-10-02");
+        
+        Personne p = new Personne("thiaw", date, adr);
         gestionnairePersonne.creerPersonne(p);
                 
-        CompteBancaire cptb = new CompteBancaire(12233, p, 0, null);
+        CompteBancaire cptb = new CompteBancaire(12233, ag, p, 0, date);
         gestionnaireCompteBancaire.creerCompte(cptb);
     }
     

@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import tp3.modeles.Agence;
 import tp3.modeles.Personne;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-10-02T18:18:10")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-10-05T13:43:06")
 @StaticMetamodel(CompteBancaire.class)
 public class CompteBancaire_ { 
 
