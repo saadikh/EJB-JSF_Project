@@ -7,8 +7,8 @@ package managedbeans;
 
 import java.util.List;
 import javax.ejb.EJB;
-import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.inject.Named;
 import tp3.gestionnaires.GestionnaireCarteBancaire;
 import tp3.modeles.CarteBancaire;
 

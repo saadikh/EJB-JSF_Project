@@ -45,6 +45,10 @@ public class IndexMBean {
 
     @EJB
     private GestionnaireCompteBancaire gestionnaireCompteBancaire;
+    
+    private GestionnaireCompteBancaireMBean gestionnaireCompteBancaireMBean;
+    
+    
     /**
      * Creates a new instance of IndexMBean
      */
@@ -74,4 +78,9 @@ public class IndexMBean {
     public List<CompteBancaire> getComptes(){
         return gestionnaireCompteBancaire.getAllComptesBancaires();
     }
+    
+     public String showDetails(int compteId) {  
+        return "CompteDetails?idCompte=" + compteId;    
+     
+     }
 }

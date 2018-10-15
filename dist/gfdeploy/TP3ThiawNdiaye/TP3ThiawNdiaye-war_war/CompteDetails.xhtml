@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>  
+  <f:viewParam name="idCustomer" value="#{compteDetailsMBean.idCompte}"  
+               required="true"/>  
+  <f:viewAction action="#{compteDetailsMBean.loadCompte}"/>  
+</f:metadata>
+    <h:head>
+        <title>Détails compte</title>
+    </h:head>
+    <h:body>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="NumeroCompte:" for="numeroCompte" />
+                    <h:inputText id="numeroCompte" value="#{compteDetailsMBean.details.numeroCompte}" title="NumeroCompte" />
+                    <h:outputLabel value="Agence:" for="agence" />
+                    <h:selectOneMenu id="agence" value="#{compteDetailsMBean.details.agence}" title="Agence" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="DateOuverture:" for="dateOuverture" />
+                    <h:inputText id="dateOuverture" value="#{compteDetailsMBean.details.dateOuverture}" title="DateOuverture" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="Proprietaire:" for="proprietaire" />
+                    <h:selectOneMenu id="proprietaire" value="#{compteDetailsMBean.details.proprietaire}" title="Proprietaire" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{fixme}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="SoldeCompte:" for="soldeCompte" />
+                    <h:inputText id="soldeCompte" value="#{compteDetailsMBean.details.soldeCompte}" title="SoldeCompte" />
+                    <h:outputLabel value="Id:" for="id" />
+                    <h:inputText id="id" value="#{compteDetailsMBean.details.id}" title="Id" />
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

@@ -11,14 +11,23 @@
         <title>Gestion des comptes</title>
     </h:head>
     <h:body>
+        <h1><h:outputText value="Gestion des comptes"/></h1>
+
+        <h:form>
+            <p:menubar>
+                <p:menuitem value="Créer compte"> </p:menuitem>
+                <p:menuitem value="Transférer argent"> </p:menuitem>
+                <p:menuitem value="Dépot argent"> </p:menuitem>
+                <p:menuitem> </p:menuitem>
+            </p:menubar>
+        </h:form>
+
         <f:view>
 
-
             <h:form>
-                <h1><h:outputText value="Gestion des comptes"/></h1>
                 <p:dataTable value="#{indexMBean.comptes}" var="item"
                              emptyMessage="No customer found with given criteria"   
-                            widgetVar="customerTable"
+                             widgetVar="customerTable"
                              paginator="true" 
                              rows="10">
                     <p:column>
@@ -43,9 +52,17 @@
                     </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Gestion du compte"/>
+                            <h:outputText value="Opérations"/>
                         </f:facet>
-                        <h:link>Details / Ajout / Retrait </h:link> 
+                        <h:link outcome="#{indexMBean.showDetails(item.id)}" value="Détails"/>
+                        <h:outputText value="&#160;" />
+                        <h:outputText value="/" />
+                        <h:outputText value="&#160;" />
+                        <h:link outcome="#{indexMBean.showDetails(item.id)}" value="Modifier"/>   
+                        <h:outputText value="&#160;" />
+                        <h:outputText value="/" />
+                        <h:outputText value="&#160;" />
+                        <h:link outcome="#{indexMBean.showDetails(item.id)}" value="Supprimer"/>    
                     </p:column>
                 </p:dataTable>
             </h:form>
