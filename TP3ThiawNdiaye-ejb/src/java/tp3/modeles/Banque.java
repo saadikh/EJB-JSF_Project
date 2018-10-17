@@ -27,9 +27,14 @@ public class Banque extends Personne implements Serializable {
     public Banque() {
     }
     
-    
+    /**
+     *
+     * @param nom
+     * @param adresse
+     * @param dateCreation
+     */
     public Banque(String nom, Adresse adresse, Date dateCreation){
-        super(nom, dateCreation, adresse);
+       // super(nom, adresse, dateCreation;
     }
     
  
