@@ -20,8 +20,8 @@ import javax.persistence.Temporal;
 @Entity
 @NamedQueries({ 
     @NamedQuery(name = "CarteBancaire.findAll", query = "SELECT c FROM CarteBancaire c") 
-    , @NamedQuery(name = "CarteBancaire.findByNumeroCarte", query = "SELECT c FROM CarteBancaire c WHERE c.numeroCarte = :numeroCarte") 
-    , @NamedQuery(name = "CarteBancaire.findByCodeAgence", query = "SELECT c.agence.codeAgence FROM CarteBancaire c") 
+    , @NamedQuery(name = "CarteBancaire.findById", query = "SELECT c FROM CarteBancaire c WHERE c.id = :id") 
+    , @NamedQuery(name = "CarteBancaire.findByIdAgence", query = "SELECT c.agence.id FROM CarteBancaire c") 
     , @NamedQuery(name = "CarteBancaire.findByVoieAgence", query = "SELECT c.agence.adresse.voie FROM CarteBancaire c") 
     , @NamedQuery(name = "CarteBancaire.findByVilleAgence", query = "SELECT c.agence.adresse.ville FROM CarteBancaire c") 
     , @NamedQuery(name = "CarteBancaire.findByNumeroVoieAgence", query = "SELECT c.agence.adresse.numeroVoie FROM CarteBancaire c") 
@@ -38,7 +38,6 @@ public class CarteBancaire implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    private int numeroCarte;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateCreation;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -75,21 +74,14 @@ public class CarteBancaire implements Serializable {
     public CarteBancaire() {
     }
 
-    public CarteBancaire(int numeroCarte, Date dateCreation, Date dateExpiration, Agence agence, Personne proprietaire) {
-        this.numeroCarte = numeroCarte;
+    public CarteBancaire(Long id){
+        this.id = id;
+    }
+    
+    public CarteBancaire(Date dateCreation, Date dateExpiration, Agence agence, Personne proprietaire) {
         this.dateCreation = dateCreation;
         this.dateExpiration = dateExpiration;
         this.proprietaire = proprietaire;
-    }
-    
-    
-
-    public int getNumeroCarte() {
-        return numeroCarte;
-    }
-
-    public void setNumeroCarte(int numeroCarte) {
-        this.numeroCarte = numeroCarte;
     }
 
     public Date getDateExpiration() {

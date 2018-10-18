@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 @NamedQueries({
     @NamedQuery(name = "Agence.findAll", query = "SELECT a FROM Agence a")
     , @NamedQuery(name = "Agence.findByNomAgence", query = "SELECT a FROM Agence a WHERE a.nomAgence = :nomAgence")
-    , @NamedQuery(name = "Agence.findByCodeAgence", query = "SELECT a FROM Agence a WHERE a.codeAgence = :codeAgence")
+    , @NamedQuery(name = "Agence.findById", query = "SELECT a FROM Agence a WHERE a.id = :id")
     , @NamedQuery(name = "Agence.findByNomVoie", query = "SELECT a.adresse.voie FROM Agence a")
     , @NamedQuery(name = "Agence.findByNumeroVoie", query = "SELECT a.adresse.numeroVoie FROM Agence a")
     , @NamedQuery(name = "Agence.findByVille", query = "SELECT a.adresse.ville FROM Agence a ")})
@@ -29,16 +29,18 @@ public class Agence implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int codeAgence;
     private String nomAgence;
     @OneToOne
     private Adresse adresse;
 
     public Agence() {
     }
+    
+    public Agence(Long id){
+        this.id = id;
+    }
 
-    public Agence(int codeAgence, String nomAgence, Adresse adresse) {
-        this.codeAgence = codeAgence;
+    public Agence(String nomAgence, Adresse adresse) {
         this.nomAgence = nomAgence;
         this.adresse = adresse;
     }
@@ -49,14 +51,6 @@ public class Agence implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public int getCodeAgence() {
-        return codeAgence;
-    }
-
-    public void setCodeAgence(int codeAgence) {
-        this.codeAgence = codeAgence;
     }
 
     public String getNomAgence() {

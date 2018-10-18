@@ -19,17 +19,18 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 @Entity
-@NamedQueries({ 
-    @NamedQuery(name = "Personne.findAll", query = "SELECT p FROM Personne p") 
-    , @NamedQuery(name = "Personne.findByNom", query = "SELECT p FROM Personne p WHERE p.nom = :nom") 
-    , @NamedQuery(name = "Personne.findByPrenom", query = "SELECT p FROM Personne p WHERE p.prenom = :prenom") 
-    , @NamedQuery(name = "Personne.findByDateNaissance", query = "SELECT p FROM Personne p WHERE p.dateNaissance = :dateNaissance") 
-    , @NamedQuery(name = "Personne.findByLogin", query = "SELECT p FROM Personne p WHERE p.login = :login") 
-    , @NamedQuery(name = "Personne.findByMotDePasse", query = "SELECT p FROM Personne p WHERE p.motDePasse = :motDePasse") 
-    , @NamedQuery(name = "Personne.findByProfession", query = "SELECT p FROM Personne p WHERE p.profession = :profession") 
-     , @NamedQuery(name = "Personne.findByVoie", query = "SELECT p.adresse.voie FROM Personne p ") 
-    , @NamedQuery(name = "Personne.findByVille", query = "SELECT p.adresse.ville FROM Personne p") 
-    , @NamedQuery(name = "Personne.findByNumeroVoie", query = "SELECT p.adresse.numeroVoie FROM Personne p")}) 
+@NamedQueries({
+    @NamedQuery(name = "Personne.findAll", query = "SELECT p FROM Personne p")
+    , @NamedQuery(name = "Personne.findById", query = "SELECT p FROM Personne p WHERE p.id = :id")
+    , @NamedQuery(name = "Personne.findByNom", query = "SELECT p FROM Personne p WHERE p.nom = :nom")
+    , @NamedQuery(name = "Personne.findByPrenom", query = "SELECT p FROM Personne p WHERE p.prenom = :prenom")
+    , @NamedQuery(name = "Personne.findByDateNaissance", query = "SELECT p FROM Personne p WHERE p.dateNaissance = :dateNaissance")
+    , @NamedQuery(name = "Personne.findByLogin", query = "SELECT p FROM Personne p WHERE p.login = :login")
+    , @NamedQuery(name = "Personne.findByMotDePasse", query = "SELECT p FROM Personne p WHERE p.motDePasse = :motDePasse")
+    , @NamedQuery(name = "Personne.findByProfession", query = "SELECT p FROM Personne p WHERE p.profession = :profession")
+    , @NamedQuery(name = "Personne.findByVoie", query = "SELECT p.adresse.voie FROM Personne p ")
+    , @NamedQuery(name = "Personne.findByVille", query = "SELECT p.adresse.ville FROM Personne p")
+    , @NamedQuery(name = "Personne.findByNumeroVoie", query = "SELECT p.adresse.numeroVoie FROM Personne p")})
 public class Personne implements Serializable {
 
     @Id
@@ -58,10 +59,12 @@ public class Personne implements Serializable {
     public void setCompteBancaires(List<CompteBancaire> compteBancaires) {
         this.compteBancaires = compteBancaires;
     }
-    
-    
 
     public Personne() {
+    }
+    
+    public Personne(Long id){
+        this.id = id;
     }
 
     public Personne(String nom, String prenom, Date dateNaissance, String login, String motDePasse, String profession, Adresse adresse) {

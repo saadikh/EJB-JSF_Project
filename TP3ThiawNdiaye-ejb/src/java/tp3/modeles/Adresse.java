@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({ 
     @NamedQuery(name = "Adresse.findAll", query = "SELECT a FROM Adresse a") 
+    , @NamedQuery(name = "Adresse.findById", query = "SELECT a FROM Adresse a WHERE a.id = :id") 
     , @NamedQuery(name = "Adresse.findByNumeroVoie", query = "SELECT a FROM Adresse a WHERE a.numeroVoie = :numeroVoie") 
     , @NamedQuery(name = "Adresse.findByVoie", query = "SELECT a FROM Adresse a WHERE a.voie = :voie") 
     , @NamedQuery(name = "Adresse.findByVille", query = "SELECT a FROM Adresse a WHERE a.ville = :ville")}) 
@@ -32,6 +33,10 @@ public class Adresse implements Serializable {
     private String ville;
 
     public Adresse() {
+    }
+    
+    public Adresse(Long id){
+        this.id = id;
     }
 
     public Adresse(int numeroVoie, String voie, String ville) {
