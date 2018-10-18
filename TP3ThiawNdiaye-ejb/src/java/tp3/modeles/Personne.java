@@ -46,6 +46,8 @@ public class Personne implements Serializable {
     private String login;
     private String motDePasse;
     private String profession;
+    private Boolean sexe;
+   
     @OneToOne
     private Adresse adresse;
 
@@ -67,7 +69,7 @@ public class Personne implements Serializable {
         this.id = id;
     }
 
-    public Personne(String nom, String prenom, Date dateNaissance, String login, String motDePasse, String profession, Adresse adresse) {
+    public Personne(String nom, String prenom, Date dateNaissance, String login, String motDePasse, String profession, Adresse adresse, boolean sexe) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -75,6 +77,7 @@ public class Personne implements Serializable {
         this.motDePasse = motDePasse;
         this.profession = profession;
         this.adresse = adresse;
+        this.sexe= sexe;
     }
 
     public Personne(String nom, String prenom, Date dateNaissance, Adresse adresse) {
@@ -169,5 +172,10 @@ public class Personne implements Serializable {
     public String toString() {
         return "tp3.modeles.Personne[ id=" + id + " ]";
     }
+
+    public Boolean getSexe() {
+        return sexe;
+    }
+    
 
 }

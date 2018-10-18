@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <f:metadata>  
+  <f:viewParam name="idCustomer" value="#{compteDetailsMBean.idCompte}"  
+               required="true"/>  
+  <f:viewAction action="#{compteDetailsMBean.loadCompte}"/>  
+</f:metadata>
+    <h:head>
+        <title>Détails compte</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="Create Compte"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="NumeroCompte:" for="numeroCompte" />
+                    <h:inputText id="numeroCompte" value="#{compteDetailsMBean.idCompte}" title="NumeroCompte" />
+                   
+                    <h:outputLabel value="Agence:" for="agence" />
+                    <h:inputText id="agence" value="#{gestionnaireAgenceMBean.agence}" title="Agence" >
+                         <f:selectItems value="#{gestionnaireAgenceMBean.agence.nomAgence}"/>
+                         <f:selectItems value="#{gestionnaireAgenceMBean.agence.adresse}"/>
+                    </h:inputText>
+                    <h:outputLabel value="DateOuverture:" for="dateOuverture" />
+                    <h:inputText id="dateOuverture" value="#{gestionnaireCompteBancaireMBean.compteBancaire.dateOuverture}" title="DateOuverture" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="Proprietaire:" for="proprietaire" />
+                    <h:selectOneMenu id="proprietaire" value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire}" title="Proprietaire" >
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire.nom}"/>
+                        <f:selectItems value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire.prenom}"/>
+                        <f:selectItems value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire.sexe}"/>
+                        <f:selectItems value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire.dateNaissance}"/>
+                        <f:selectItems value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire.adresse}"/>
+                        <f:selectItems value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire.profession}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="SoldeCompte:" for="soldeCompte" />
+                    <h:inputText id="soldeCompte" value="#{gestionnaireCompteBancaireMBean.compteBancaire.soldeCompte}" title="SoldeCompte" />
+                    <h:commandButton value="Valider" action="#{bean.actionString('affichage', numEx, query)}"/>  
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

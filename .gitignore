@@ -13,3 +13,5 @@ hs_err_pid*
 /build/
 /TP3ThiawNdiaye-ejb/build/
 /TP3ThiawNdiaye-war/build/
+/TP3ThiawNdiaye-ejb/dist/
+/TP3ThiawNdiaye-war/dist/
