@@ -8,12 +8,12 @@ package managedbeans;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 import tp3.gestionnaires.GestionnaireAgence;
 import tp3.gestionnaires.GestionnaireCompteBancaire;
 import tp3.gestionnaires.GestionnairePersonne;
@@ -26,7 +26,7 @@ import tp3.modeles.Personne;
  * @author thiaw
  */
 @Named(value = "compteDetailsMBean")
-@ViewScoped
+@SessionScoped
 public class CompteDetailsMBean implements Serializable {
 
     @EJB
@@ -56,6 +56,30 @@ public class CompteDetailsMBean implements Serializable {
     public CompteBancaire getCompte() {
         return compteBancaire;
     }
+    
+    public void setCompte(CompteBancaire cb){
+        this.compteBancaire = cb;
+    }
+    
+    /** 
+   * Action handler - met à jour la base de données en fonction du client passé 
+   * en paramètres, et renvoie vers la page qui affiche la liste des clients. 
+     * @return 
+   */  
+  public String update() {  
+    System.out.println("###UPDATE###");  
+    this.compteBancaire = gestionnaireCompteBancaire.update(compteBancaire);  
+    return "printComptes?faces-redirect=true";  
+  }  
+  
+  /** 
+   * Action handler - renvoie vers la page qui affiche la liste des clients 
+     * @return 
+   */  
+  public String list() {  
+    System.out.println("###LIST###");  
+    return "printComptes?faces-redirect=true";  
+  } 
 
     public void loadCompte() {
         this.compteBancaire = gestionnaireCompteBancaire.getCompteBancaireById(idCompte);

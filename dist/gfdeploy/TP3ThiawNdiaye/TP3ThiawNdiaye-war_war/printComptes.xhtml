@@ -12,7 +12,7 @@
     </h:head>
     <h:body>
         <h1><h:outputText value="Gestion des comptes"/></h1>
-        
+
         <f:event type="javax.faces.event.PreRenderViewEvent" listener="#{indexMBean.preRenderView}"/>
 
 
@@ -21,7 +21,7 @@
             <h:form>
                 <p:dataTable value="#{indexMBean.comptes}" var="item" 
                              emptyMessage="No customer found with given criteria"   
-                            widgetVar="customerTable"
+                             widgetVar="customerTable"
                              paginator="true" 
                              rows="10">
                     <p:column headerText="N°Compte">  
@@ -45,11 +45,15 @@
                             <h:outputText value="Opération"/>
                         </f:facet>
                         <h:link outcome="#{indexMBean.showDetails(item.id)}" value="Détails"/>                        
-                    <h:outputText value="&#160;" />
-                    <h:outputText value="/" />
-                    <h:outputText value="&#160;" />
-                    <h:commandLink action="#{indexMBean.deleteCompte(item)}"
-                                   value="Supprimer"/>
+                        <h:outputText value="&#160;" />
+                        <h:outputText value="/" />
+                        <h:outputText value="&#160;" />
+                        Ajout/retrait
+                        <h:outputText value="&#160;" />
+                        <h:outputText value="/" />
+                        <h:outputText value="&#160;" />
+                        <h:commandLink action="#{indexMBean.deleteCompte(item)}"
+                                       value="Supprimer"/>
                     </p:column>
                 </p:dataTable>
             </h:form>

@@ -43,6 +43,10 @@
                     </h:selectOneMenu>
                     <h:outputLabel value="SoldeCompte:" for="soldeCompte" />
                     <h:inputText id="soldeCompte" value="#{compteDetailsMBean.compte.soldeCompte}" title="SoldeCompte" />
+                    
+                    <h:commandButton id="back" value="Back" immediate="true" action="#{compteDetailsMBean.list()}"/>  
+                    <h:commandButton id="update" value="Update" immediate="true"  action="#{compteDetailsMBean.update()}"/> 
+                    
                 </h:panelGrid>
             </h:form>
         </f:view>

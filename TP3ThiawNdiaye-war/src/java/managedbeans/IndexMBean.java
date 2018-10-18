@@ -117,7 +117,7 @@ public class IndexMBean implements Serializable {
 
     public void refreshListOfCompteFromDatabase() {
         // true force le refresh depuis la base
-        compteList = gestionnaireCompteBancaire.getAllComptesBancaires();
+        compteList = gestionnaireCompteBancaire.getAllComptesBancaires(true);
 
     }
 }
