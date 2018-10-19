@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <f:metadata>  
+  <f:viewParam name="idCustomer" value="#{gestionnaireOperationMBean}"  
+               required="true"/>  
+  <f:viewAction action="#{gestionnaireOperationMBean}"/> 
+
+</f:metadata>
+    <h:head>
+        <title>Détails compte</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="faire une opération"/></h1>
+             <h:panelGrid columns="2">
+                    <h:outputLabel value="SoldeCompte:" for="soldeCompte" />
+                    <h:inputText id="soldeCompte" value="#{compteDetailsMBean.compte.soldeCompte}" title="SoldeCompte" />
+                    
+                
+                    <h:outputLabel value="operations:" for="operations" />
+                     <h:selectOneMenu id="operations" value="#{gestionnaireOperationMBean}" 
+                                     title="Agence" required="true" requiredMessage="Agence required."
+                                     converter="#{compteDetailsMBean.agenceCodeConverter}">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{compteDetailsMBean.allAgences}"
+                                       var="item"
+                                       itemLabel="#{item.id} (#{item.adresse.ville} - #{item.nomAgence})" itemValue="#{item}"/>
+                    </h:selectOneMenu>
+                    
+          
+                    <h:commandButton id="back" value="Back" immediate="true" action="#{compteDetailsMBean.list()}"/>  
+                    <h:commandButton id="update" value="Update" immediate="true"  action="#{compteDetailsMBean.update()}"/> 
+                    
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+

@@ -12,10 +12,7 @@ import javax.inject.Named;
 import tp3.gestionnaires.GestionnaireCarteBancaire;
 import tp3.modeles.CarteBancaire;
 
-/**
- *
- * @author thiaw
- */
+
 @Named(value = "gestionnaireCarteBancaireMBean")
 @Dependent
 public class GestionnaireCarteBancaireMBean {

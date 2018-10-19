@@ -15,14 +15,18 @@
 
         <f:event type="javax.faces.event.PreRenderViewEvent" listener="#{indexMBean.preRenderView}"/>
         
-            <p:link outcome="creationCompte" value="Créer compte">
-            <f:param name="numeroCompte" value="" />
-             </p:link>
-
 
         <f:view>
            
           
+            <p:link outcome="creationCompte" value="Créer compte">
+            <f:param name="numeroCompte" value="" />
+             </p:link>
+            <br> </br>
+             <p:link outcome="formulaire" value="transfert Argent">
+            <f:param name="solde" value="" />
+             </p:link>
+            
             <h:form>
                 <p:dataTable value="#{indexMBean.comptes}" var="item" 
                              emptyMessage="No customer found with given criteria"   

@@ -5,13 +5,33 @@
  */
 package tp3.modeles;
 
-public class Operations {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+//@Entity
+//@NamedQueries({ 
+//    @NamedQuery(name = "Operations.findAll", query = "SELECT o FROM Operations o")
+//    , @NamedQuery(name = "Operations.findByAjout", query = "SELECT o.ajout  FROM Operations o WHERE o.ajout=ajout") 
+//    , @NamedQuery(name = "Operations.findByRetrait", query = "SELECT o.retrait FROM Operations o WHERE o.retrait= retrait") 
+//    , @NamedQuery(name = "Operations.findByVersement", query = "SELECT o.versement FROM Operations o WHERE o.versement= versement") 
+//    , @NamedQuery(name = "Operations.findByVirement", query = "SELECT o.virement FROM Operations o WHERE o.virement = virement")}) 
+
+public class Operations implements Serializable {
     
+   
+    
+    @Id
     private int ajout;
     private int retrait;
     private int versement;
     private int virement;
     private int soldeCompte;
+
+    public Operations() {
+    }
 
 
     public Operations(int ajout, int retrait, int virement,int soldeCompte) {

@@ -16,32 +16,36 @@
         <f:view>
             <h:form>
                 <h1><h:outputText value="Create Compte"/></h1>
-                <h:panelGrid columns="2">
+             <h:panelGrid columns="2">
                     <h:outputLabel value="NumeroCompte:" for="numeroCompte" />
-                    <h:inputText id="numeroCompte" value="#{compteDetailsMBean.idCompte}" title="NumeroCompte" />
-                   
+                    <h:inputText id="numeroCompte" value="#{compteDetailsMBean.compte.id}" title="NumeroCompte" />
                     <h:outputLabel value="Agence:" for="agence" />
-                    <h:inputText id="agence" value="#{gestionnaireAgenceMBean.agence}" title="Agence" >
-                         <f:selectItems value="#{gestionnaireAgenceMBean.agence.nomAgence}"/>
-                         <f:selectItems value="#{gestionnaireAgenceMBean.agence.adresse}"/>
-                    </h:inputText>
+                    <h:selectOneMenu id="agence" value="#{compteDetailsMBean.compte.agence}" 
+                                     title="Agence" required="true" requiredMessage="Agence required."
+                                     converter="#{compteDetailsMBean.agenceCodeConverter}">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{compteDetailsMBean.allAgences}"
+                                       var="item"
+                                       itemLabel="#{item.id} (#{item.adresse.ville} - #{item.nomAgence})" itemValue="#{item}"/>
+                    </h:selectOneMenu>
                     <h:outputLabel value="DateOuverture:" for="dateOuverture" />
-                    <h:inputText id="dateOuverture" value="#{gestionnaireCompteBancaireMBean.compteBancaire.dateOuverture}" title="DateOuverture" >
+                    <h:inputText id="dateOuverture" value="#{compteDetailsMBean.compte.dateOuverture}" title="DateOuverture" >
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:inputText>
                     <h:outputLabel value="Proprietaire:" for="proprietaire" />
-                    <h:selectOneMenu id="proprietaire" value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire}" title="Proprietaire" >
-                        <!-- TODO: update below reference to list of available items-->
-                        <f:selectItems value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire.nom}"/>
-                        <f:selectItems value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire.prenom}"/>
-                        <f:selectItems value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire.sexe}"/>
-                        <f:selectItems value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire.dateNaissance}"/>
-                        <f:selectItems value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire.adresse}"/>
-                        <f:selectItems value="#{gestionnaireCompteBancaireMBean.compteBancaire.proprietaire.profession}"/>
+                    <h:selectOneMenu id="proprietaire" value="#{compteDetailsMBean.compte.proprietaire}"   
+                                     title="Proprietaire" required="true" requiredMessage="The personne field is required."  
+                                     converter="#{compteDetailsMBean.personneCodeConverter}">   
+                        <f:selectItems value="#{compteDetailsMBean.allPersonnes}"  
+                                       var="item"   
+                                       itemLabel="#{item.prenom} #{item.nom}" itemValue="#{item}" />  
                     </h:selectOneMenu>
                     <h:outputLabel value="SoldeCompte:" for="soldeCompte" />
-                    <h:inputText id="soldeCompte" value="#{gestionnaireCompteBancaireMBean.compteBancaire.soldeCompte}" title="SoldeCompte" />
-                    <h:commandButton value="Valider" action="#{bean.actionString('affichage', numEx, query)}"/>  
+                    <h:inputText id="soldeCompte" value="#{compteDetailsMBean.compte.soldeCompte}" title="SoldeCompte" />
+                    
+                    <h:commandButton id="back" value="Back" immediate="true" action="#{compteDetailsMBean.list()}"/>  
+                    <h:commandButton id="update" value="Update" immediate="true"  action="#{compteDetailsMBean.update()}"/> 
+                    
                 </h:panelGrid>
             </h:form>
         </f:view>
