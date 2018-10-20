@@ -8,6 +8,7 @@ package tp3.modeles;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,9 +26,8 @@ import javax.persistence.Temporal;
     , @NamedQuery(name = "Personne.findByNom", query = "SELECT p FROM Personne p WHERE p.nom = :nom")
     , @NamedQuery(name = "Personne.findByPrenom", query = "SELECT p FROM Personne p WHERE p.prenom = :prenom")
     , @NamedQuery(name = "Personne.findByDateNaissance", query = "SELECT p FROM Personne p WHERE p.dateNaissance = :dateNaissance")
-    , @NamedQuery(name = "Personne.findByLogin", query = "SELECT p FROM Personne p WHERE p.login = :login")
-    , @NamedQuery(name = "Personne.findByMotDePasse", query = "SELECT p FROM Personne p WHERE p.motDePasse = :motDePasse")
-    , @NamedQuery(name = "Personne.findByProfession", query = "SELECT p FROM Personne p WHERE p.profession = :profession")
+    , @NamedQuery(name = "Personne.findByPassword", query = "SELECT p FROM Personne p WHERE p.password = :password")
+    , @NamedQuery(name = "Personne.findByStatut", query = "SELECT p FROM Personne p WHERE p.statut = :statut")
     , @NamedQuery(name = "Personne.findByVoie", query = "SELECT p.adresse.voie FROM Personne p ")
     , @NamedQuery(name = "Personne.findByVille", query = "SELECT p.adresse.ville FROM Personne p")
     , @NamedQuery(name = "Personne.findByNumeroVoie", query = "SELECT p.adresse.numeroVoie FROM Personne p")})
@@ -43,15 +43,21 @@ public class Personne implements Serializable {
     private String prenom;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateNaissance;
+<<<<<<< Updated upstream
     private String login;
     private String motDePasse;
     private String profession;
     private Boolean sexe;
    
+=======
+    private String password;
+    private String statut;
+    
+>>>>>>> Stashed changes
     @OneToOne
     private Adresse adresse;
 
-    @OneToMany(mappedBy = "proprietaire")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "proprietaire")
     private List<CompteBancaire> compteBancaires;
 
     public List<CompteBancaire> getCompteBancaires() {
@@ -69,13 +75,16 @@ public class Personne implements Serializable {
         this.id = id;
     }
 
+<<<<<<< Updated upstream
     public Personne(String nom, String prenom, Date dateNaissance, String login, String motDePasse, String profession, Adresse adresse, boolean sexe) {
+=======
+    public Personne(String nom, String prenom, Date dateNaissance,String motDePasse, String statut, Adresse adresse) {
+>>>>>>> Stashed changes
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
-        this.login = login;
-        this.motDePasse = motDePasse;
-        this.profession = profession;
+        this.password = motDePasse;
+        this.statut = statut;
         this.adresse = adresse;
         this.sexe= sexe;
     }
@@ -111,28 +120,20 @@ public class Personne implements Serializable {
         this.dateNaissance = dateNaissance;
     }
 
-    public String getLogin() {
-        return login;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getMotDePasse() {
-        return motDePasse;
+    public String getStatut() {
+        return statut;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
-    }
-
-    public String getProfession() {
-        return profession;
-    }
-
-    public void setProfession(String profession) {
-        this.profession = profession;
+    public void setStatut(String statut) {
+        this.statut = statut;
     }
 
     public Adresse getAdresse() {

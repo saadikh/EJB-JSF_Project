@@ -33,7 +33,7 @@ public class GestionnaireCompteBancaire {
         em.persist(object);
     }
 
-    public CompteBancaire getCompteBancaireById(long id) {
+    public CompteBancaire getCompteBancaireById(Long id) {
         return em.find(CompteBancaire.class, id);
     }
 

@@ -12,8 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import tp3.gestionnaires.GestionnaireAdresse;
@@ -30,7 +30,7 @@ import tp3.modeles.Personne;
  * @author thiaw
  */
 @Named(value = "indexMBean")
-@SessionScoped
+@ViewScoped
 public class IndexMBean implements Serializable {
 
     @EJB
@@ -77,8 +77,8 @@ public class IndexMBean implements Serializable {
         Date date = dfm.parse("2018-10-02");
 
         //creation personnes
-        Personne p = new Personne("thiaw", "mamadou", date, adr);
-        Personne p1 = new Personne("diouf", "awa", date, adr);
+        Personne p = new Personne("thiaw", "mamadou", date, "mamadou", "conseiller", adr);
+        Personne p1 = new Personne("diouf", "awa", date, "awa", "client", adr);
         gestionnairePersonne.creerPersonne(p);
         gestionnairePersonne.creerPersonne(p1);
 
@@ -120,4 +120,12 @@ public class IndexMBean implements Serializable {
         compteList = gestionnaireCompteBancaire.getAllComptesBancaires(true);
 
     }
+
+    /*public void refreshCompteFromDatabase(CompteBancaire cb){
+        gestionnaireCompteBancaire.update(cb);
+    }*/
+    /*public void update(CompteBancaire cb) {
+        gestionnaireCompteBancaire.update(cb);
+    }*/
+    
 }
