@@ -13,6 +13,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import tp3.gestionnaires.GestionnaireCompteBancaire;
 import tp3.gestionnaires.GestionnairePersonne;
 import tp3.gestionnaires.LoginManager;
@@ -25,8 +27,7 @@ public class LoginMBean implements Serializable {
 
     @EJB
     private LoginManager loginManager;
-    
-    
+
     @EJB
     private GestionnaireCompteBancaire gestionnaireCompteBancaire;
 
@@ -56,6 +57,7 @@ public class LoginMBean implements Serializable {
     public String connexion() {
         //si l'admin de l'application
         if (name.equals("admin") && password.equals("admin")) {
+
             return "admin?faces-redirect=true";
         }
         //si le conseiller principal ou admin au niveau banque
@@ -85,8 +87,14 @@ public class LoginMBean implements Serializable {
         return "login?faces-redirect=true";
 
     }
-    
-    public void delete(Login user){
+
+    public String logout() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.invalidate();
+        return "login?faces-redirect=true";
+    }
+
+    public void delete(Login user) {
         loginManager.deleteUser(user);
     }
 
@@ -94,10 +102,10 @@ public class LoginMBean implements Serializable {
         return loginManager.getAllUsers();
     }
 
-    public List<CompteBancaire> getComptesUsers(){
+    public List<CompteBancaire> getComptesUsers() {
         return gestionnaireCompteBancaire.getComptesByPwd(password);
     }
-    
+
     /**
      * Creates a new instance of LoginMBean
      */
