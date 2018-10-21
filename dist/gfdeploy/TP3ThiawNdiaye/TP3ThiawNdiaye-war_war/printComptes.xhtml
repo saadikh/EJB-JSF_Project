@@ -10,28 +10,11 @@
             Gestion des comptes
         </ui:define>
 
-<<<<<<< Updated upstream
-        <f:event type="javax.faces.event.PreRenderViewEvent" listener="#{indexMBean.preRenderView}"/>
-        
-
-        <f:view>
-           
-          
-            <p:link outcome="creationCompte" value="Créer compte">
-            <f:param name="numeroCompte" value="" />
-             </p:link>
-            <br> </br>
-             <p:link outcome="formulaire" value="transfert Argent">
-            <f:param name="solde" value="" />
-             </p:link>
-            
-=======
         <ui:define name="content">
 
             <f:event type="javax.faces.event.PreRenderViewEvent" listener="#{indexMBean.preRenderView}"/>
             <f:event type="javax.faces.event.PreRenderViewEvent" listener="#{indexMBean.refreshListOfCompteFromDatabase()}"/>
 
->>>>>>> Stashed changes
             <h:form>
                 <p:dataTable value="#{indexMBean.comptes}" var="item" 
                              emptyMessage="No customer found with given criteria"   

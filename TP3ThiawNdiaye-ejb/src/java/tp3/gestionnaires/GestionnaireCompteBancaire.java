@@ -65,9 +65,5 @@ public class GestionnaireCompteBancaire {
         
         return liste;
     }
-
-    public CompteBancaire getCompteBancaire(int idCompteBancaire) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+       
 }

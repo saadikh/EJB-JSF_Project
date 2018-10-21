@@ -43,17 +43,9 @@ public class Personne implements Serializable {
     private String prenom;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateNaissance;
-<<<<<<< Updated upstream
-    private String login;
-    private String motDePasse;
-    private String profession;
-    private Boolean sexe;
-   
-=======
     private String password;
     private String statut;
     
->>>>>>> Stashed changes
     @OneToOne
     private Adresse adresse;
 
@@ -75,18 +67,13 @@ public class Personne implements Serializable {
         this.id = id;
     }
 
-<<<<<<< Updated upstream
-    public Personne(String nom, String prenom, Date dateNaissance, String login, String motDePasse, String profession, Adresse adresse, boolean sexe) {
-=======
     public Personne(String nom, String prenom, Date dateNaissance,String motDePasse, String statut, Adresse adresse) {
->>>>>>> Stashed changes
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.password = motDePasse;
         this.statut = statut;
         this.adresse = adresse;
-        this.sexe= sexe;
     }
 
     public Personne(String nom, String prenom, Date dateNaissance, Adresse adresse) {
@@ -173,10 +160,5 @@ public class Personne implements Serializable {
     public String toString() {
         return "tp3.modeles.Personne[ id=" + id + " ]";
     }
-
-    public Boolean getSexe() {
-        return sexe;
-    }
-    
 
 }
