@@ -55,13 +55,17 @@ public class LoginMBean implements Serializable {
     }
 
     public String connexion() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+
         //si l'admin de l'application
         if (name.equals("admin") && password.equals("admin")) {
-
+            session.setAttribute(name, name);
             return "admin?faces-redirect=true";
         }
         //si le conseiller principal ou admin au niveau banque
         if (name.equals("conseiller") && password.equals("root")) {
+            session.setAttribute(name, name);
             return "printComptes?faces-redirect=true";
 
         }
@@ -71,6 +75,7 @@ public class LoginMBean implements Serializable {
         if (result) {
 
             if (name.equals("client")) {
+                session.setAttribute(name, name);
                 return "user?faces-redirect=true";
 
             }
@@ -81,9 +86,8 @@ public class LoginMBean implements Serializable {
             }
         }
 
-        //si erreur identification 
-        /*FacesMessage message = new FacesMessage("Pas de compte correspondant ");
-        throw new ValidatorException(message);*/
+        //si erreur identification, on detruit aussi la session
+        session.invalidate();
         return "login?faces-redirect=true";
 
     }
