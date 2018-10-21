@@ -27,6 +27,7 @@ import javax.persistence.Temporal;
     , @NamedQuery(name = "Personne.findByPrenom", query = "SELECT p FROM Personne p WHERE p.prenom = :prenom")
     , @NamedQuery(name = "Personne.findByDateNaissance", query = "SELECT p FROM Personne p WHERE p.dateNaissance = :dateNaissance")
     , @NamedQuery(name = "Personne.findByPassword", query = "SELECT p FROM Personne p WHERE p.password = :password")
+    , @NamedQuery(name = "Personne.findByProfession", query = "SELECT p FROM Personne p WHERE p.profession = :profession")
     , @NamedQuery(name = "Personne.findByStatut", query = "SELECT p FROM Personne p WHERE p.statut = :statut")
     , @NamedQuery(name = "Personne.findByVoie", query = "SELECT p.adresse.voie FROM Personne p ")
     , @NamedQuery(name = "Personne.findByVille", query = "SELECT p.adresse.ville FROM Personne p")
@@ -45,6 +46,7 @@ public class Personne implements Serializable {
     private Date dateNaissance;
     private String password;
     private String statut;
+    private String profession;
     
     @OneToOne
     private Adresse adresse;
@@ -66,6 +68,7 @@ public class Personne implements Serializable {
     public Personne(Long id){
         this.id = id;
     }
+    
 
     public Personne(String nom, String prenom, Date dateNaissance,String motDePasse, String statut, Adresse adresse) {
         this.nom = nom;
@@ -76,11 +79,12 @@ public class Personne implements Serializable {
         this.adresse = adresse;
     }
 
-    public Personne(String nom, String prenom, Date dateNaissance, Adresse adresse) {
+    public Personne(String nom, String prenom, Date dateNaissance, Adresse adresse, String profession) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.adresse = adresse;
+        this.profession = profession;
     }
 
     public String getNom() {
@@ -93,6 +97,14 @@ public class Personne implements Serializable {
 
     public String getPrenom() {
         return prenom;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
     }
 
     public void setPrenom(String prenom) {

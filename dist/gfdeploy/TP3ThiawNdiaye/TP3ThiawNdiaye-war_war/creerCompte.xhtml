@@ -25,13 +25,18 @@
                     </p:selectOneMenu>
                     <h:outputLabel value="Nom:" for="nom" style="font-weight:bold"/>
                     <p:inputText value="#{compteDetailsMBean.personne.nom}"/>
-                    
-                    
-                    
+                   
                     <h:outputLabel value="Prenom:" for="prenom" style="font-weight:bold" />
                     <p:inputText id="prenom" value="#{compteDetailsMBean.personne.prenom}" title="prenom" />
                     <h:outputLabel value="Date de Naissance:" for="dateNaissance" style="font-weight:bold" />
                     <p:inputText id="dateNaissance" value="#{compteDetailsMBean.personne.dateNaissance}" title="dateNaissance" />
+                    
+                     <h:outputLabel value="Adresse:" for="adresse" style="font-weight:bold" />
+                     <p:inputText id="adresse" value="#{compteDetailsMBean.personne.adresse}" title="adresse" />
+                    
+                    <h:outputLabel value="Profession: " for="profession" style="font-weight:bold" />
+                    <p:inputText id="profession" value="#{compteDetailsMBean.personne.profession}" title="Profession" />
+                    
                 </h:panelGrid>
                 <h:panelGrid columns="2">
                     <p:commandButton id="Retour" value="Back"  immediate="true" action="#{compteDetailsMBean.list}"/>  
