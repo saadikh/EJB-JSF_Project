@@ -40,7 +40,7 @@ public class GestionnaireCompteBancaireMBean implements Serializable{
     }
     
     public void loadCompte() {  
-    this.compteBancaire = gestionnaireCompteBancaire.getCompteBancaire(idCompteBancaire);  
+   // this.compteBancaire = gestionnaireCompteBancaire.getCompteBancaire(idCompteBancaire);  
   } 
     
      /*public List<CompteBancaire> getComptes() {  

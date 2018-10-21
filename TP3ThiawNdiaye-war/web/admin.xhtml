@@ -1,14 +1,58 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>  
+        <f:viewAction action="#{indexMBean.creerComptesTests()}"/>  
+    </f:metadata>
     <h:head>
-        <title>Facelet Title</title>
+        <title>Gestion des comptes</title>
     </h:head>
     <h:body>
-        Hello admin !!!
+        <f:event type="javax.faces.event.PreRenderViewEvent" listener="#{indexMBean.preRenderView}"/>
+        <f:event type="javax.faces.event.PreRenderViewEvent" listener="#{indexMBean.refreshListOfCompteFromDatabase()}"/>
+        <f:view>
+            <h:panelGrid columns="2">
+
+                <p:link outcome="creerCompte" value="Créer compte">
+                    <f:param name="numeroCompte" value="" />
+                </p:link> <t> / </t> 
+                <p:link outcome="depot" value="dépot d'argent">
+                    <f:param name="solde" value="" />
+                </p:link> <t> / </t> 
+                <p:link outcome="retrait" value="retrait d'argent">
+                    <f:param name="solde" value="" />
+                </p:link> <t> / </t> 
+
+                <h:form>
+                    <p:dataTable value="#{indexMBean.comptes}" var="item" 
+                                 emptyMessage="No customer found with given criteria"   
+                                 widgetVar="customerTable"
+                                 paginator="true" 
+                                 rows="10">
+                        <p:column headerText="N°Compte">  
+                            <h:link outcome="#{indexMBean.showDetails(item.id)}" value="#{item.id}"/>                        
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Proprietaire"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proprietaire.nom} "/>
+                            <h:outputText value=" #{item.proprietaire.prenom}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="SoldeCompte"/>
+                            </f:facet>
+                            <h:outputText value="#{item.soldeCompte}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </h:panelGrid>
+        </f:view>
     </h:body>
 </html>
 

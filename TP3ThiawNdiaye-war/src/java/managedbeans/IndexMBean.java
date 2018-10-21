@@ -77,8 +77,8 @@ public class IndexMBean implements Serializable {
         Date date = dfm.parse("2018-10-02");
 
         //creation personnes
-        Personne p = new Personne("thiaw", "mamadou", date, "mamadou", "conseiller", adr);
-        Personne p1 = new Personne("diouf", "awa", date, "awa", "client", adr);
+        Personne p = new Personne("ndiaye", "maguette", date, "maguette", "conseiller", adr);
+        Personne p1 = new Personne("fall", "cheikh", date, "cheikh", "client", adr);
         gestionnairePersonne.creerPersonne(p);
         gestionnairePersonne.creerPersonne(p1);
 

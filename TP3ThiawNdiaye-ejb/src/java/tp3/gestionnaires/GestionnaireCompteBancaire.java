@@ -19,6 +19,8 @@ public class GestionnaireCompteBancaire {
 
     @PersistenceContext(unitName = "TP3ThiawNdiaye-ejbPU")
     private EntityManager em;
+    
+     private int soldeCompte;
 
    public List<CompteBancaire> getAllComptesBancaires() {  
         Query query = em.createNamedQuery("CompteBancaire.findAll");  
@@ -33,7 +35,7 @@ public class GestionnaireCompteBancaire {
         em.persist(object);
     }
 
-    public CompteBancaire getCompteBancaireById(Long id) {
+    public CompteBancaire getCompteBancaireById(long id) {
         return em.find(CompteBancaire.class, id);
     }
 
@@ -65,5 +67,31 @@ public class GestionnaireCompteBancaire {
         
         return liste;
     }
-       
+
+    public CompteBancaire getCompteBancaire(int idCompteBancaire) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    public int getSoldeCompte() {
+        return soldeCompte;
+    }
+
+    public void setSoldeCompte(int soldeCompte) {
+        this.soldeCompte = soldeCompte;
+    }
+    
+    
+      
+    public void deposer(int montant){
+        soldeCompte += montant;
+    }
+    
+      public void retirer(int montant){
+        soldeCompte -= montant;
+    }
+    
+    
+
+
 }
