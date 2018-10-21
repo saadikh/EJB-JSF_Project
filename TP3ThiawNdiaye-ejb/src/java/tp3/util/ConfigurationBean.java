@@ -31,6 +31,9 @@ import tp3.gestionnaires.LoginManager;
 @Startup
 public class ConfigurationBean implements Configuration {
 
+    /*
+    src: https://www.ibm.com/support/knowledgecenter/fr/SSAW57_9.0.0/com.ibm.websphere.nd.multiplatform.doc/ae/tejb_ssb.html
+    */
     LoginManager loginManager = lookupLoginManagerBean();
 
     @PostConstruct

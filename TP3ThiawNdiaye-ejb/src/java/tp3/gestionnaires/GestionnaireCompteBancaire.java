@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import tp3.modeles.CompteBancaire;
+import tp3.modeles.Personne;
 
 @Stateless
 @LocalBean
@@ -19,13 +20,11 @@ public class GestionnaireCompteBancaire {
 
     @PersistenceContext(unitName = "TP3ThiawNdiaye-ejbPU")
     private EntityManager em;
-    
-     private int soldeCompte;
 
-   public List<CompteBancaire> getAllComptesBancaires() {  
-        Query query = em.createNamedQuery("CompteBancaire.findAll");  
-        return query.getResultList();  
-} 
+    public List<CompteBancaire> getAllComptesBancaires() {
+        Query query = em.createNamedQuery("CompteBancaire.findAll");
+        return query.getResultList();
+    }
 
     public CompteBancaire update(CompteBancaire compteBancaire) {
         return em.merge(compteBancaire);
@@ -35,7 +34,7 @@ public class GestionnaireCompteBancaire {
         em.persist(object);
     }
 
-    public CompteBancaire getCompteBancaireById(long id) {
+    public CompteBancaire getCompteBancaireById(Long id) {
         return em.find(CompteBancaire.class, id);
     }
 
@@ -46,52 +45,34 @@ public class GestionnaireCompteBancaire {
     public void deleteCompte(CompteBancaire c) {
         em.remove(em.merge(c));
     }
-    
-        public List<CompteBancaire> getAllComptesBancaires(boolean forceRefresh) {
+
+    public List<CompteBancaire> getAllComptesBancaires(boolean forceRefresh) {
         Query query = em.createNamedQuery("CompteBancaire.findAll");
         // Cette liste provient du cache de niveau 2 et 1
         // Si les données changent en insert/delete, la liste est à jour
         // Mais pas forcément les updates
         List<CompteBancaire> liste = query.getResultList();
-        
+
         // Force le refresh des valeurs
-        if(forceRefresh) {
+        if (forceRefresh) {
             for (CompteBancaire compte : liste) {
                 // em.refresh force le rafraichissement des
                 // attributs de l'objet en mémoire en fonction
                 // des dernières valeurs pour cet objet, dans la base
                 // (au plus près du dernier commit)
-                em.refresh(compte);               
+                em.refresh(compte);
             }
         }
-        
+
         return liste;
     }
 
-    public CompteBancaire getCompteBancaire(int idCompteBancaire) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    public int getSoldeCompte() {
-        return soldeCompte;
-    }
+    public List<CompteBancaire> getComptesByPwd(String pwd) {
+        Query query = em.createQuery("SELECT c.proprietaire.password FROM CompteBancaire c where c.proprietaire.password = '" + pwd + "'");
+        List<Personne> personnes = query.getResultList();
+        // password unique pour chaque user, donc pas besoin de verifier le size()
+        return personnes.get(0).getCompteBancaires();
 
-    public void setSoldeCompte(int soldeCompte) {
-        this.soldeCompte = soldeCompte;
     }
-    
-    
-      
-    public void deposer(int montant){
-        soldeCompte += montant;
-    }
-    
-      public void retirer(int montant){
-        soldeCompte -= montant;
-    }
-    
-    
-
 
 }

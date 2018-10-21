@@ -77,8 +77,8 @@ public class IndexMBean implements Serializable {
         Date date = dfm.parse("2018-10-02");
 
         //creation personnes
-        Personne p = new Personne("ndiaye", "maguette", date, "maguette", "conseiller", adr);
-        Personne p1 = new Personne("fall", "cheikh", date, "cheikh", "client", adr);
+        Personne p = new Personne("thiaw", "mamadou", date, "mamadou", "conseiller", adr);
+        Personne p1 = new Personne("diouf", "awa", date, "awa", "client", adr);
         gestionnairePersonne.creerPersonne(p);
         gestionnairePersonne.creerPersonne(p1);
 
@@ -92,9 +92,7 @@ public class IndexMBean implements Serializable {
     }
 
     public List<CompteBancaire> getComptes() {
-        if (compteList == null) {
-            refreshListOfCompteFromDatabase();
-        }
+        refreshListOfCompteFromDatabase();
         return compteList;
     }
 
@@ -121,11 +119,7 @@ public class IndexMBean implements Serializable {
 
     }
 
-    /*public void refreshCompteFromDatabase(CompteBancaire cb){
-        gestionnaireCompteBancaire.update(cb);
-    }*/
-    /*public void update(CompteBancaire cb) {
-        gestionnaireCompteBancaire.update(cb);
-    }*/
-    
+    public List<CompteBancaire> getComptesClient(Personne p){
+        return gestionnairePersonne.getMesComptes(p);
+    }
 }

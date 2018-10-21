@@ -12,6 +12,7 @@ import javax.ejb.LocalBean;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import tp3.modeles.CompteBancaire;
 import tp3.modeles.Personne;
 
 @Stateless
@@ -82,4 +83,8 @@ public class GestionnairePersonne {
 
         return liste;
     }
+       
+       public List<CompteBancaire> getMesComptes(Personne p){
+           return p.getCompteBancaires();
+       }
 }
