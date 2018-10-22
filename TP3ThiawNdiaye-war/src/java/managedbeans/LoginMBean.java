@@ -98,8 +98,9 @@ public class LoginMBean implements Serializable {
         return "login?faces-redirect=true";
     }
 
-    public void delete(Login user) {
-        loginManager.deleteUser(user);
+    public String deleteByPwd(String pwd) {
+        loginManager.deleteByPwd(pwd);
+        return "admin?faces-redirect=true";
     }
 
     public List<Login> getUsers() {

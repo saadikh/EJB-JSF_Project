@@ -19,41 +19,49 @@
                 <div class="col-md">
                     <c:choose>
                         <c:when test="#{loginMBean.name == 'conseiller'}">
-                            <p:tabMenu activeIndex="#{param.i}">
-                                <p:menuitem value="Accueil" outcome="/printComptes" icon="ui-icon-home">
-                                </p:menuitem>
-                                <p:menuitem value="Créer compte" outcome="/creerCompte" icon="ui-icon-plus">
-                                </p:menuitem>
-                                <p:menuitem value="Virement" outcome="/transfert" icon="ui-icon-transferthick-e-w">
-                                </p:menuitem>
-                                <p:menuitem value="logout" outcome="/login" icon="ui-icon-power">
-                                </p:menuitem>
-                            </p:tabMenu>
+                            <h:form>
+                                <p:tabMenu activeIndex="#{param.i}">
+                                    <p:menuitem value="Accueil" outcome="/printComptes" icon="ui-icon-home">
+                                    </p:menuitem>
+                                    <p:menuitem value="Créer compte" outcome="/creerCompte" icon="ui-icon-plus">
+                                    </p:menuitem>
+                                    <p:menuitem value="Virement" outcome="/transfert" icon="ui-icon-transferthick-e-w">
+                                    </p:menuitem>
+                                    <p:menuitem value="logout" action="#{loginMBean.logout()}" icon="ui-icon-power">
+                                    </p:menuitem>
+                                </p:tabMenu>
+                                </h:form>
                         </c:when>
 
                         <c:when test="#{loginMBean.name == 'admin'}">
-                            <p:tabMenu activeIndex="#{param.i}">
-                                <p:menuitem value="Accueil" outcome="/user" icon="ui-icon-home">
-                                </p:menuitem>
-                                <p:menuitem icon="ui-icon-plus" value="Créer compte" outcome="/creerCompte" >
-                                </p:menuitem>
-                                <p:menuitem value="logout" outcome="/login" icon="ui-icon-power">
-                                </p:menuitem>
-                            </p:tabMenu>  
+                            <h:form>
+                                <p:tabMenu activeIndex="#{param.i}">
+                                    <p:menuitem value="Accueil" outcome="/user" icon="ui-icon-home">
+                                    </p:menuitem>
+                                    <p:menuitem icon="ui-icon-plus" value="Créer compte" outcome="/creerCompte" >
+                                    </p:menuitem>
+                                    <p:menuitem value="logout" action="#{loginMBean.logout()}" icon="ui-icon-power">
+                                    </p:menuitem>
+                                </p:tabMenu>  
+                                </h:form>
                         </c:when>
 
-                        <c:otherwise>
-                            <p:tabMenu activeIndex="#{param.i}">
-                                <p:menuitem value="Accueil" outcome="/user" icon="ui-icon-home">
-                                </p:menuitem>
-                                <p:menuitem icon="ui-icon-plus" value="Créer compte" outcome="/creerCompte" >
-                                </p:menuitem>
-                                <p:menuitem value="Virement" outcome="/transfert" icon="ui-icon-transferthick-e-w">
-                                </p:menuitem>
-                                <p:menuitem value="logout" outcome="/login" icon="ui-icon-power">
-                                </p:menuitem>
-                            </p:tabMenu>                    
-                        </c:otherwise>
+                        <!-- si user est client -->
+                        <c:when test="#{loginMBean.name == 'client'}">
+                            <h:form>
+                                <p:tabMenu activeIndex="#{param.i}">
+                                    <p:menuitem value="Accueil" outcome="/user" icon="ui-icon-home">
+                                    </p:menuitem>
+                                    <p:menuitem value="Virement" outcome="/transfert" icon="ui-icon-transferthick-e-w">
+                                    </p:menuitem>
+                                    <p:menuitem value="logout" action="#{loginMBean.logout()}" icon="ui-icon-power">
+                                    </p:menuitem>
+                                </p:tabMenu>    
+                                </h:form>
+                        </c:when>
+
+                        <!-- pas de menu pour login.xhtml -->
+                        <c:otherwise></c:otherwise>
                     </c:choose>
                 </div>
             </div>
@@ -64,10 +72,14 @@
                     <ui:insert name="content">Content</ui:insert>
                 </div>
             </div>
-
+            <hr/> 
             <div class="row">
-                <div class="col-md" style="text-align: center">
-                    <ui:insert name="bottom">Thiaw et Ndiaye</ui:insert>
+                <div class="col-md">
+                    <div id="about"> 
+                        Copyright (c) 2018 2019. 
+                        <br/> 
+                        <ui:insert name="bottom">Thiaw et Ndiaye</ui:insert>
+                    </div>
                 </div>
             </div>
             <br/>

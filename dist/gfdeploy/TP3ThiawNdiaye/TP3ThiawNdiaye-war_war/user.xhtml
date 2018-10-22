@@ -22,16 +22,16 @@
             <h:form>
                 <h1><h:outputText value="List"/></h1>
                 <p:dataTable value="#{loginMBean.comptesUsers}" var="item">
-                    <p:column headerText="N°Compte">  
+                    <p:column style="text-align: center" headerText="N°Compte">  
                         <h:outputText value="#{item.id}"/>                </p:column>
-                    <p:column>
+                    <p:column style="text-align: center">
                         <f:facet name="header">
                             <h:outputText value="Proprietaire"/>
                         </f:facet>
                         <h:outputText value="#{item.proprietaire.nom} "/>
                         <h:outputText value=" #{item.proprietaire.prenom}"/>
                     </p:column>
-                    <p:column>
+                    <p:column style="text-align: center">
                         <f:facet name="header">
                             <h:outputText value="SoldeCompte"/>
                         </f:facet>

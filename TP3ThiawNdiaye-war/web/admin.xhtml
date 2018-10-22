@@ -18,35 +18,37 @@
         <f:view>
 
             <h:form>
-                <h1><h:outputText value="List"/></h1>
+                <h1><h:outputText value="Users"/></h1>
                 <p:dataTable value="#{loginMBean.users}" var="item">
-                    <p:column>
+                    <p:column style="text-align: center">
                         <f:facet name="header">
                             <h:outputText value="Name"/>
                         </f:facet>
                         <h:outputText value="#{item.name}"/>
                     </p:column>
-                    <p:column>
+                    <p:column style="text-align: center">
                         <f:facet name="header">
                             <h:outputText value="Password"/>
                         </f:facet>
                         <h:outputText value="#{item.password}"/>
                     </p:column>
-                    <p:column>
+                    <p:column style="text-align: center">
                         <f:facet name="header">
                             <h:outputText value="Id"/>
                         </f:facet>
                         <h:outputText value="#{item.id}"/>
                     </p:column>
-                     <p:column>
-                    <h:outputText value="Opérations" />
-                    <h:commandLink action="#{loginMBean.delete(item)}"
-                                   value="Supprimer"/>
-                </p:column>
+                    <p:column style="text-align: center">
+                        <f:facet name="header">
+                            <h:outputText value="Opérations"/>
+                        </f:facet>                    
+                        <h:commandLink action="#{loginMBean.deleteByPwd(item.password)}"
+                                       value="Supprimer"/>
+                    </p:column>
                 </p:dataTable>
             </h:form>
         </f:view>
 
-    
+
     </ui:define>
 </ui:composition>

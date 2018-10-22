@@ -4,24 +4,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <ui:composition template="mainTemplate.xhtml">
-        <ui:define name="header">  
-            Page de connexion
-        </ui:define>
 
         <ui:define name="content">
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="Name"></h:outputText>
-                    <h:inputText value="#{loginMBean.name}"></h:inputText>
-                    <h:outputText value="Password"></h:outputText>
-                    <h:inputSecret value="#{loginMBean.password}"></h:inputSecret>
-                </h:panelGrid>
-                <h:commandButton value="Login" action="#{loginMBean.connexion()}"></h:commandButton>
-            </h:form>    
-        </ui:define>
+            <h2 class="display-4 text-left">Bienvenue à la page de connexion, </h2>
+            <hr/>
+            <h3 class="display-4 text-center">Veuillez entrer vos identifiants.</h3>
+            <hr/>
+            <h:form id="login">
+                <div class="form-group col-sm-3">
+                    <label for="login">Login : </label>
+                    <h:inputText value="#{loginMBean.name}" styleClass="form-control"
+                                 required="true"/>
+                </div>
 
+                <div class="form-group col-sm-3">
+                    <label for="password">Password : </label>
+                    <h:inputSecret value="#{loginMBean.password}" styleClass="form-control"
+                                 required="true"/>
+                </div>
+
+                <div class="form-group col-sm-3">
+                    <div id="loginButton">
+                        <h:commandButton class="btn btn-primary btn-sm" action="#{loginMBean.connexion()}" 
+                                         value="Login"/>
+                    </div>
+                </div>
+
+            </h:form>
+        </ui:define>
 
     </ui:composition>
 </html>

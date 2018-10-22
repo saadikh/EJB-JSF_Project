@@ -38,6 +38,12 @@ public class LoginManager {
     public void deleteUser(Login user) {
         em.remove(user);
     }
+    
+    public void deleteByPwd(String pwd){
+        List<Login> users = chercherParPassword(pwd);
+        Login user = users.get(0);
+        deleteUser(user);
+    }
 
     public void updateUser(Login user) {
         em.merge(user);
@@ -69,9 +75,15 @@ public class LoginManager {
         return liste;
     }
 
-    public Collection<Login> chercherParNom(String nom) {
+    public List<Login> chercherParNom(String nom) {
         getAllUsers(true);
         Query query = em.createQuery("select l from Login l where l.name = '" + nom + "'");
+        return query.getResultList();
+    }
+    
+      public List<Login> chercherParPassword(String pwd) {
+        getAllUsers(true);
+        Query query = em.createQuery("select l from Login l where l.password = '" + pwd + "'");
         return query.getResultList();
     }
 
