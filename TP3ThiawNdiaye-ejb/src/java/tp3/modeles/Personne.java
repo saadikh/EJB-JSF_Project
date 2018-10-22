@@ -6,10 +6,13 @@
 package tp3.modeles;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,12 +48,19 @@ public class Personne implements Serializable {
     private Date dateNaissance;
     private String password;
     private String statut;
-    
+
     @OneToOne
     private Adresse adresse;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "proprietaire")
     private List<CompteBancaire> compteBancaires;
+
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Collection<OperationBancaire> operations = new ArrayList<>();
+
+    public Collection<OperationBancaire> getOperations() {
+        return operations;
+    }
 
     public List<CompteBancaire> getCompteBancaires() {
         return compteBancaires;
@@ -62,12 +72,12 @@ public class Personne implements Serializable {
 
     public Personne() {
     }
-    
-    public Personne(Long id){
+
+    public Personne(Long id) {
         this.id = id;
     }
 
-    public Personne(String nom, String prenom, Date dateNaissance,String motDePasse, String statut, Adresse adresse) {
+    public Personne(String nom, String prenom, Date dateNaissance, String motDePasse, String statut, Adresse adresse) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -81,6 +91,9 @@ public class Personne implements Serializable {
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.adresse = adresse;
+        OperationBancaire op = new OperationBancaire();
+        op.setDescription("Création personne");
+        operations.add(op); // ici on ajoute la relation  
     }
 
     public String getNom() {

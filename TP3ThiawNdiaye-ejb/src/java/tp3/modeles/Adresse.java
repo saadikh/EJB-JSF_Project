@@ -6,36 +6,47 @@
 package tp3.modeles;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
+import javax.persistence.OneToMany;
 
 @Entity
-@NamedQueries({ 
-    @NamedQuery(name = "Adresse.findAll", query = "SELECT a FROM Adresse a") 
-    , @NamedQuery(name = "Adresse.findById", query = "SELECT a FROM Adresse a WHERE a.id = :id") 
-    , @NamedQuery(name = "Adresse.findByNumeroVoie", query = "SELECT a FROM Adresse a WHERE a.numeroVoie = :numeroVoie") 
-    , @NamedQuery(name = "Adresse.findByVoie", query = "SELECT a FROM Adresse a WHERE a.voie = :voie") 
-    , @NamedQuery(name = "Adresse.findByVille", query = "SELECT a FROM Adresse a WHERE a.ville = :ville")}) 
+@NamedQueries({
+    @NamedQuery(name = "Adresse.findAll", query = "SELECT a FROM Adresse a")
+    , @NamedQuery(name = "Adresse.findById", query = "SELECT a FROM Adresse a WHERE a.id = :id")
+    , @NamedQuery(name = "Adresse.findByNumeroVoie", query = "SELECT a FROM Adresse a WHERE a.numeroVoie = :numeroVoie")
+    , @NamedQuery(name = "Adresse.findByVoie", query = "SELECT a FROM Adresse a WHERE a.voie = :voie")
+    , @NamedQuery(name = "Adresse.findByVille", query = "SELECT a FROM Adresse a WHERE a.ville = :ville")})
 public class Adresse implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     private String voie;
     private int numeroVoie;
     private String ville;
 
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Collection<OperationBancaire> operations = new ArrayList<>();
+
+    public Collection<OperationBancaire> getOperations() {
+        return operations;
+    }
+
     public Adresse() {
     }
-    
-    public Adresse(Long id){
+
+    public Adresse(Long id) {
         this.id = id;
     }
 
@@ -43,8 +54,10 @@ public class Adresse implements Serializable {
         this.voie = voie;
         this.numeroVoie = numeroVoie;
         this.ville = ville;
+        OperationBancaire op = new OperationBancaire();
+        op.setDescription("Création Adresse");
+        operations.add(op); 
     }
-    
 
     public String getVoie() {
         return voie;
@@ -62,7 +75,6 @@ public class Adresse implements Serializable {
         this.numeroVoie = numeroVoie;
     }
 
-
     public String getVille() {
         return ville;
     }
@@ -71,8 +83,6 @@ public class Adresse implements Serializable {
         this.ville = ville;
     }
 
-    
-    
     public Long getId() {
         return id;
     }
@@ -102,5 +112,5 @@ public class Adresse implements Serializable {
     public String toString() {
         return "tp3.modeles.Adresse[ id=" + id + " ]";
     }
-    
+
 }

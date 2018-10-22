@@ -6,16 +6,20 @@
 package tp3.modeles;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
-
 
 @Entity
 @NamedQueries({
@@ -23,12 +27,12 @@ import javax.persistence.Temporal;
     , @NamedQuery(name = "CompteBancaire.findById", query = "SELECT c FROM CompteBancaire c WHERE c.id = :id")
     , @NamedQuery(name = "CompteBancaire.findBySoldeCompte", query = "SELECT c FROM CompteBancaire c WHERE c.soldeCompte = :soldeCompte")
     , @NamedQuery(name = "CompteBancaire.findByNomProprietaire", query = "SELECT c.proprietaire.nom FROM CompteBancaire c ")
-    , @NamedQuery(name = "CompteBancaire.findByPrenomProprietaire", query = "SELECT c.proprietaire.prenom FROM CompteBancaire c ") 
-    , @NamedQuery(name = "CompteBancaire.findByIdAgence", query = "SELECT c.agence.id FROM CompteBancaire c ") 
-    , @NamedQuery(name = "CompteBancaire.findByVoieAgence", query = "SELECT c.agence.adresse.voie FROM CompteBancaire c ") 
-    , @NamedQuery(name = "CompteBancaire.findByVilleAgence", query = "SELECT c.agence.adresse.ville FROM CompteBancaire c ") 
-    , @NamedQuery(name = "CompteBancaire.findByNumeroVoieAgence", query = "SELECT c.agence.adresse.numeroVoie FROM CompteBancaire c ") 
-    , @NamedQuery(name = "CompteBancaire.findByNomAgence", query = "SELECT c.agence.nomAgence FROM CarteBancaire c ") 
+    , @NamedQuery(name = "CompteBancaire.findByPrenomProprietaire", query = "SELECT c.proprietaire.prenom FROM CompteBancaire c ")
+    , @NamedQuery(name = "CompteBancaire.findByIdAgence", query = "SELECT c.agence.id FROM CompteBancaire c ")
+    , @NamedQuery(name = "CompteBancaire.findByVoieAgence", query = "SELECT c.agence.adresse.voie FROM CompteBancaire c ")
+    , @NamedQuery(name = "CompteBancaire.findByVilleAgence", query = "SELECT c.agence.adresse.ville FROM CompteBancaire c ")
+    , @NamedQuery(name = "CompteBancaire.findByNumeroVoieAgence", query = "SELECT c.agence.adresse.numeroVoie FROM CompteBancaire c ")
+    , @NamedQuery(name = "CompteBancaire.findByNomAgence", query = "SELECT c.agence.nomAgence FROM CarteBancaire c ")
     , @NamedQuery(name = "CompteBancaire.findByDateOuverture", query = "SELECT c FROM CompteBancaire c WHERE c.dateOuverture = :dateOuverture")})
 public class CompteBancaire implements Serializable {
 
@@ -36,7 +40,7 @@ public class CompteBancaire implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @ManyToOne
     private Agence agence;
     @ManyToOne
@@ -44,6 +48,13 @@ public class CompteBancaire implements Serializable {
     private int soldeCompte;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOuverture;
+
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Collection<OperationBancaire> operations = new ArrayList<>();
+
+    public Collection<OperationBancaire> getOperations() {
+        return operations;
+    }
 
     public Agence getAgence() {
         return agence;
@@ -61,12 +72,11 @@ public class CompteBancaire implements Serializable {
         this.dateOuverture = dateOuverture;
     }
 
-    
-    public CompteBancaire(){
-        
+    public CompteBancaire() {
+
     }
-    
-    public CompteBancaire(Long id){
+
+    public CompteBancaire(Long id) {
         this.id = id;
     }
 
@@ -75,6 +85,9 @@ public class CompteBancaire implements Serializable {
         this.soldeCompte = soldeCompte;
         this.dateOuverture = dateOuverture;
         this.agence = agence;
+        OperationBancaire op = new OperationBancaire();
+        op.setDescription("Création du compte");
+        operations.add(op); 
     }
 
     public Personne getProprietaire() {
@@ -85,7 +98,6 @@ public class CompteBancaire implements Serializable {
         this.proprietaire = proprietaire;
     }
 
-
     public int getSoldeCompte() {
         return soldeCompte;
     }
@@ -93,7 +105,6 @@ public class CompteBancaire implements Serializable {
     public void setSoldeCompte(int soldeCompte) {
         this.soldeCompte = soldeCompte;
     }
-
 
     public Long getId() {
         return id;
@@ -124,5 +135,5 @@ public class CompteBancaire implements Serializable {
     public String toString() {
         return "tp3.modeles.CompteBancaire[ id=" + id + " ]";
     }
-    
+
 }

@@ -118,22 +118,4 @@ public class CompteDetailsMBean implements Serializable {
         }
     };
 
-    //conversion de Agence en string
-    public Converter getAgenceCodeConverter() {
-        return agenceCodeConverter;
-    }
-    private Converter agenceCodeConverter = new Converter() {
-
-        @Override
-        public Object getAsObject(FacesContext context, UIComponent component, String value) {
-            return new ConverterException("On verra la conversion String->Objet plus tard...");
-        }
-
-        @Override
-        public String getAsString(FacesContext context, UIComponent component, Object value) {
-            Agence ag = (Agence) value;
-            return ag.getNomAgence() + ag.getAdresse().getVille();
-        }
-    };
-
 }

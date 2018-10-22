@@ -6,12 +6,17 @@
 package tp3.modeles;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -33,16 +38,26 @@ public class Agence implements Serializable {
     @OneToOne
     private Adresse adresse;
 
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Collection<OperationBancaire> operations = new ArrayList<>();
+
+    public Collection<OperationBancaire> getOperations() {
+        return operations;
+    }
+
     public Agence() {
     }
-    
-    public Agence(Long id){
+
+    public Agence(Long id) {
         this.id = id;
     }
 
     public Agence(String nomAgence, Adresse adresse) {
         this.nomAgence = nomAgence;
         this.adresse = adresse;
+        OperationBancaire op = new OperationBancaire();
+        op.setDescription("Création Agence");
+        operations.add(op); 
     }
 
     public Long getId() {
@@ -68,8 +83,8 @@ public class Agence implements Serializable {
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
     }
-    
-        @Override
+
+    @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
@@ -91,5 +106,4 @@ public class Agence implements Serializable {
         return "tp3.modeles.Agence[ id=" + id + " ]";
     }
 
-    
 }

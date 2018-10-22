@@ -90,6 +90,13 @@ public class IndexMBean implements Serializable {
         gestionnaireCompteBancaire.creerCompte(cptb1);
 
     }
+    
+    /*public void creerCompte(Personne p, Agence ag, int solde, Date dateOuverture){
+        gestionnairePersonne.creerPersonne(p);
+        gestionnaireAgence.creerAgence(ag);
+        
+    }*/
+    
 
     public List<CompteBancaire> getComptes() {
         refreshListOfCompteFromDatabase();
